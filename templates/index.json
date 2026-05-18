@@ -610,6 +610,61 @@
         "review_5"
       ]
     },
+    "product-hotspots": {
+      "type": "product-hotspots",
+      "settings": {
+        "image": "shopify://shop_images/image-7-mobile-I8681146086811453.png",
+        "section_width": "full-width",
+        "section_height": "auto",
+        "gap": 40,
+        "color_scheme": "scheme-2",
+        "hotspot_color": "#C9CAD4",
+        "bullseye_color": "#FFFFFF",
+        "product_title_gap": 8,
+        "padding-block-start": 64,
+        "padding-block-end": 0
+      },
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "static": true,
+          "settings": {
+            "text": "<p>Ready for a more reliable power system?</p>",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "2rem",
+            "line_height": "normal",
+            "letter_spacing": "tight",
+            "case": "none",
+            "alignment": "center",
+            "width": "100%",
+            "color": "var(--color-foreground-heading)"
+          }
+        },
+        "hotspot-1": {
+          "type": "_hotspot-product",
+          "settings": {
+            "x-position": 35,
+            "y-position": 23
+          }
+        },
+        "hotspot-2": {
+          "type": "_hotspot-product",
+          "settings": {
+            "x-position": 66,
+            "y-position": 23
+          }
+        },
+        "hotspot-3": {
+          "type": "_hotspot-product",
+          "settings": {
+            "x-position": 58,
+            "y-position": 55
+          }
+        }
+      },
+      "block_order": ["hotspot-1", "hotspot-2", "hotspot-3"]
+    },
     "content-carousel": {
       "type": "carousel",
       "settings": {
@@ -904,6 +959,7 @@
     "image-title-cards",
     "tabbed-product-carousel",
     "testimonials",
+    "product-hotspots",
     "content-carousel"
   ]
 }

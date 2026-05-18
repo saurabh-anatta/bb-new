@@ -18,7 +18,7 @@
   data-testid="product-hotspots"
   style="
     {% render 'spacing-style', settings: section.settings %}
-    {% render 'gap-style', value: 28 %}
+    {% render 'gap-style', value: section.settings.gap %}
     {% if section.settings.section_height != 'auto' %}
       --ratio: {{ section.settings.section_height }};
     {% elsif section.settings.image != blank %}
@@ -563,6 +563,16 @@
       "default": "auto"
     },
     {
+      "type": "range",
+      "id": "gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
       "type": "header",
       "content": "t:content.colors"
     },
@@ -690,6 +700,7 @@
       "settings": {
         "section_width": "page-width",
         "color_scheme": "scheme-1",
+        "gap": 28,
         "product_title_gap": 8,
         "padding-block-start": 40,
         "padding-block-end": 40
