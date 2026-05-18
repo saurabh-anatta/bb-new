@@ -130,6 +130,7 @@
     "search": "Search",
     "section_layout": "Section layout",
     "section_link": "Section link",
+    "tabs": "Tabs",
     "section_size": "Section size",
     // Section header for width and height controls
     "size": "Size",
@@ -439,7 +440,8 @@
     "view_all_button": "View all",
     "pills": "Pills",
     "comparison_slider": "Comparison slider",
-    "promo_bar": "Promo bar"
+    "promo_bar": "Promo bar",
+    "tabbed_product_carousel": "Tabbed product carousel"
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -1198,7 +1200,11 @@
     "cs_slider_inner_color": "Slider inner color",
     "text_on_images": "Text on images",
     "x_position": "Horizontal position",
-    "y_position": "Vertical position"
+    "y_position": "Vertical position",
+    "description": "Description",
+    "tab_label": "Tab label",
+    "tab_collection": "Tab collection",
+    "products_to_show": "Products to show"
   },
   "text_defaults": {
     "accordion_heading": "Accordion heading",
