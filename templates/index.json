@@ -1,18 +1,16 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero-carousel": {
       "type": "hero-carousel",
-      "settings": {
-        "autoplay": true,
-        "autoplay_speed": 5,
-        "color_scheme": "scheme-6",
-        "show_trust_badge": true,
-        "trust_text": "Trusted by over 5 million users",
-        "slide_height_desktop": 560,
-        "slide_height_mobile": 503,
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      },
       "blocks": {
         "slide_1": {
           "type": "slide",
@@ -34,7 +32,8 @@
             "thumbnail": "shopify://shop_images/rectangle-98-mobile-I8681093286810628.png",
             "heading": "Conquer Every Climate.",
             "subheading": "Reliable lithium power in the harshest conditions.",
-            "button_label": "Shop now"
+            "button_label": "Shop now",
+            "button_link": ""
           }
         },
         "slide_3": {
@@ -45,28 +44,30 @@
             "thumbnail": "shopify://shop_images/rectangle-98-mobile-I8681093286810627.png",
             "heading": "Conquer Every Climate.",
             "subheading": "Reliable lithium power in the harshest conditions.",
-            "button_label": "Shop now"
+            "button_label": "Shop now",
+            "button_link": ""
           }
         }
       },
-      "block_order": ["slide_1", "slide_2", "slide_3"]
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ],
+      "settings": {
+        "show_trust_badge": true,
+        "trust_text": "Trusted by over 5 million users",
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "slide_height_desktop": 560,
+        "slide_height_mobile": 503,
+        "color_scheme": "scheme-6",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     },
     "tabbed-product-carousel": {
       "type": "tabbed-product-carousel",
-      "settings": {
-        "heading": "Explore Best Sellers",
-        "description": "Power lights, fans, furnace, water pump, refrigerator, satellite Internet & everyday essentials reliably through the night",
-        "tab_1_label": "LiFePO\u2084 Batteries",
-        "tab_2_label": "Smart LiFePO\u2084 Batteries",
-        "tab_3_label": "Inverter Power",
-        "tab_4_label": "Solar Integration",
-        "tab_5_label": "Alternator Charging",
-        "products_to_show": 8,
-        "columns_gap": 32,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 64,
-        "padding-block-end": 64
-      },
       "blocks": {
         "product-card": {
           "type": "_product-card",
@@ -88,7 +89,7 @@
             "product-card-gallery": {
               "type": "_product-card-gallery",
               "settings": {
-                "image_ratio": "adapt",
+                "image_ratio": "portrait",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
@@ -97,11 +98,20 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              }
+              },
+              "blocks": {}
             },
             "review": {
               "type": "review",
-              "settings": {}
+              "settings": {
+                "stars_style": "shaded",
+                "show_number": true,
+                "rating_color": "primary",
+                "type_preset": "paragraph",
+                "width": "100%",
+                "alignment": "left"
+              },
+              "blocks": {}
             },
             "product_title": {
               "type": "product-title",
@@ -124,7 +134,8 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              }
+              },
+              "blocks": {}
             },
             "price": {
               "type": "price",
@@ -145,13 +156,42 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              }
+              },
+              "blocks": {}
             }
           },
-          "block_order": ["product-card-gallery", "review", "product_title", "price"]
+          "block_order": [
+            "product-card-gallery",
+            "review",
+            "product_title",
+            "price"
+          ]
         }
+      },
+      "settings": {
+        "heading": "Explore Best Sellers",
+        "description": "Power lights, fans, furnace, water pump, refrigerator, satellite Internet & everyday essentials reliably through the night",
+        "collections": [
+          "beauty-skincare",
+          "energize-with-iqjoe®",
+          "hydrate-with-iqmix®",
+          "refuel-with-iqbar®"
+        ],
+        "tab_1_label": "LiFePO₄ Batteries",
+        "tab_2_label": "Smart LiFePO₄ Batteries",
+        "tab_3_label": "Inverter Power",
+        "tab_4_label": "Solar Integration",
+        "tab_5_label": "Alternator Charging",
+        "products_to_show": 8,
+        "columns_gap": 32,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 64,
+        "padding-block-end": 64
       }
     }
   },
-  "order": ["hero-carousel", "tabbed-product-carousel"]
+  "order": [
+    "hero-carousel",
+    "tabbed-product-carousel"
+  ]
 }
