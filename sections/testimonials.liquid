@@ -1,0 +1,653 @@
+{% liquid
+  assign color_scheme = section.settings.color_scheme
+  assign rating_num = section.settings.rating_value | plus: 0
+  assign full_stars = rating_num | floor
+  assign partial_pct = rating_num | minus: full_stars | times: 100 | round
+  assign next_star_index = full_stars | plus: 1
+
+  if partial_pct > 0
+    assign empty_count = 4 | minus: full_stars
+  else
+    assign empty_count = 5 | minus: full_stars
+  endif
+
+  assign testimonial_count = 0
+  assign has_tabs = false
+  for block in section.blocks
+    if block.type == 'testimonial'
+      assign testimonial_count = testimonial_count | plus: 1
+    elsif block.type == 'category_tab'
+      assign has_tabs = true
+    endif
+  endfor
+%}
+
+<div class="section-background color-{{ color_scheme }}"></div>
+<div
+  class="section section--page-width color-{{ color_scheme }} testimonials-section spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  {%- comment -%} Header: Stars, heading, subheading {%- endcomment -%}
+  <div class="testimonials-header">
+    <div class="testimonials-stars">
+      <div class="testimonials-stars__icons">
+        {%- for i in (1..5) -%}
+          {%- if i <= full_stars -%}
+            <svg class="testimonials-star" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M8 0.5L9.8 5.1L14.76 5.64L11 9.06L12.18 13.97L8 11.5L3.82 13.97L5 9.06L1.24 5.64L6.2 5.1L8 0.5Z" fill="var(--color-foreground-heading)"/>
+            </svg>
+          {%- elsif partial_pct > 0 and i == next_star_index -%}
+            <svg class="testimonials-star" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="partial-star-{{ section.id }}" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="{{ partial_pct }}%" stop-color="var(--color-foreground-heading)"/>
+                  <stop offset="{{ partial_pct }}%" stop-color="#ccc"/>
+                </linearGradient>
+              </defs>
+              <path d="M8 0.5L9.8 5.1L14.76 5.64L11 9.06L12.18 13.97L8 11.5L3.82 13.97L5 9.06L1.24 5.64L6.2 5.1L8 0.5Z" fill="url(#partial-star-{{ section.id }})"/>
+            </svg>
+          {%- else -%}
+            <svg class="testimonials-star" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M8 0.5L9.8 5.1L14.76 5.64L11 9.06L12.18 13.97L8 11.5L3.82 13.97L5 9.06L1.24 5.64L6.2 5.1L8 0.5Z" fill="#ccc"/>
+            </svg>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <span class="testimonials-stars__text">{{ section.settings.rating_value }}</span>
+      <span class="testimonials-stars__label">{{ section.settings.rating_label }}</span>
+    </div>
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="testimonials-heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.subheading != blank -%}
+      <p class="testimonials-subheading">{{ section.settings.subheading | escape }}</p>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Category tabs {%- endcomment -%}
+  {%- if has_tabs -%}
+    <div class="testimonials-tabs">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'category_tab' -%}
+          {%- if block.settings.url != blank -%}
+            <a
+              href="{{ block.settings.url }}"
+              class="testimonials-tab{% if block.settings.active %} testimonials-tab--active{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              {{- block.settings.label | escape -}}
+            </a>
+          {%- else -%}
+            <button
+              type="button"
+              class="testimonials-tab{% if block.settings.active %} testimonials-tab--active{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              {{- block.settings.label | escape -}}
+            </button>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Testimonial carousel {%- endcomment -%}
+  {%- if testimonial_count > 0 -%}
+    <div class="force-full-width" style="--gutter-slide-width: var(--util-page-margin-offset);">
+      <slideshow-component class="testimonials-slideshow">
+        <slideshow-container ref="slideshowContainer">
+          <slideshow-slides tabindex="-1" ref="scroller" gutters="start">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'testimonial' -%}
+                <div class="testimonial-card" ref="slides[]" {{ block.shopify_attributes }}>
+                  {%- if block.settings.quote != blank -%}
+                    <p class="testimonial-card__quote">"{{ block.settings.quote | escape }}"</p>
+                  {%- endif -%}
+                  <div class="testimonial-card__info">
+                    <div class="testimonial-card__reviewer">
+                      {%- if block.settings.reviewer_name != blank -%}
+                        <strong class="testimonial-card__name">{{ block.settings.reviewer_name | escape }}</strong>
+                      {%- endif -%}
+                      {%- if block.settings.show_verified -%}
+                        <div class="testimonial-card__verified">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <circle cx="8" cy="8" r="8" fill="var(--color-primary)"/>
+                            <path d="M11.5 5.5L7 10.5L4.5 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          <span>{{ 'sections.testimonials.verified_reviewer' | t }}</span>
+                        </div>
+                      {%- endif -%}
+                    </div>
+                    {%- if block.settings.product_name != blank -%}
+                      {%- if block.settings.product_url != blank -%}
+                        <a href="{{ block.settings.product_url }}" class="testimonial-card__product-link">
+                          {{- block.settings.product_name | escape -}}
+                        </a>
+                      {%- else -%}
+                        <span class="testimonial-card__product-link">
+                          {{- block.settings.product_name | escape -}}
+                        </span>
+                      {%- endif -%}
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </slideshow-slides>
+        </slideshow-container>
+        <div class="testimonials-nav">
+          {%- render 'slideshow-arrows', icon_style: 'arrow', arrows_position: 'center' -%}
+        </div>
+      </slideshow-component>
+    </div>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  /* Testimonials section grid gap */
+  .testimonials-section.section {
+    row-gap: max(20px, calc(var(--spacing-scale, 1) * 40px));
+  }
+
+  /* Header area */
+  .testimonials-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+
+  /* Star rating row */
+  .testimonials-stars {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .testimonials-stars__icons {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .testimonials-star {
+    width: 16px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+
+  .testimonials-stars__text,
+  .testimonials-stars__label {
+    font-family: var(--font-heading--family);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 17px;
+    color: var(--color-foreground-heading);
+  }
+
+  /* Heading */
+  .testimonials-heading {
+    font-family: var(--font-heading--family);
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 45px;
+    letter-spacing: -0.64px;
+    color: var(--color-foreground-heading);
+    margin: 0;
+  }
+
+  /* Subheading */
+  .testimonials-subheading {
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--color-foreground);
+    margin: 0;
+    max-width: 80ch;
+  }
+
+  /* Category tabs */
+  .testimonials-tabs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .testimonials-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 4px 24px;
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid var(--color-primary);
+    background: #fff;
+    color: var(--color-foreground-heading);
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .testimonials-tab:hover {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .testimonials-tab--active {
+    background: var(--color-primary-button-background);
+    color: var(--color-primary-button-text);
+    border-color: var(--color-primary-button-border);
+  }
+
+  .testimonials-tab--active:hover {
+    background: var(--color-primary-button-hover-background);
+    color: var(--color-primary-button-hover-text);
+    border-color: var(--color-primary-button-hover-border);
+  }
+
+  /* Slideshow component layout */
+  .testimonials-slideshow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .testimonials-slideshow slideshow-container {
+    width: 100%;
+  }
+
+  .testimonials-slideshow slideshow-slides {
+    --slideshow-gap: 32px;
+    gap: var(--slideshow-gap);
+  }
+
+  /* Testimonial card slide sizing */
+  .testimonials-slideshow slideshow-slides > .testimonial-card {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: calc(100vw - 80px);
+    min-width: 260px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .testimonials-slideshow slideshow-slides > .testimonial-card {
+      width: 306px;
+      min-width: auto;
+    }
+  }
+
+  /* Testimonial card */
+  .testimonial-card {
+    background: #fff;
+    border-radius: 4px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 264px;
+  }
+
+  .testimonial-card__quote {
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--color-foreground-heading);
+    margin: 0;
+  }
+
+  .testimonial-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .testimonial-card__reviewer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .testimonial-card__name {
+    font-family: var(--font-heading--family);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--color-foreground-heading);
+  }
+
+  .testimonial-card__verified {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-foreground);
+  }
+
+  .testimonial-card__verified svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .testimonial-card__product-link {
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: underline;
+    color: var(--color-primary);
+  }
+
+  .testimonial-card__product-link:hover {
+    opacity: 0.8;
+  }
+
+  /* Arrows navigation below carousel */
+  .testimonials-nav {
+    padding-block-start: max(20px, calc(var(--spacing-scale, 1) * 40px));
+  }
+
+  .testimonials-nav slideshow-arrows {
+    position: static;
+    inset: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    pointer-events: auto;
+    mix-blend-mode: normal;
+  }
+
+  .testimonials-nav .slideshow-control {
+    opacity: 1;
+    color: var(--color-foreground-heading);
+    padding: 0;
+    animation: none;
+  }
+
+  .testimonials-nav .slideshow-control[disabled] {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .testimonials-nav .slideshow-control .flip-x {
+    transform: scaleX(-1);
+  }
+
+  /* Mobile responsive */
+  @media screen and (max-width: 749px) {
+    .testimonials-heading {
+      font-size: 24px;
+      line-height: 32px;
+      letter-spacing: -0.48px;
+    }
+
+    .testimonials-subheading {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .testimonials-tabs {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-inline: var(--page-margin, 16px);
+      width: 100%;
+    }
+
+    .testimonials-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .testimonials-tab {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .testimonials-nav {
+      padding-block-start: 24px;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .testimonials-tab {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.testimonials",
+  "tag": "div",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "400,000+ LiFePO4 Battery Packs In the Field"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Power Lights, fans, furnace, water pump, refrigerator, satellite Internet & everyday essentials reliably through the night"
+    },
+    {
+      "type": "header",
+      "content": "Rating"
+    },
+    {
+      "type": "text",
+      "id": "rating_value",
+      "label": "Rating value",
+      "default": "4.6"
+    },
+    {
+      "type": "text",
+      "id": "rating_label",
+      "label": "Rating label",
+      "default": "Stars"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_tab",
+      "name": "Category tab",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Category"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "active",
+          "label": "Active",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "limit": 20,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "This battery was easy to install and has fit perfectly into my setup"
+        },
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer name",
+          "default": "Reviewer Name"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_verified",
+          "label": "Show verified badge",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product name"
+        },
+        {
+          "type": "url",
+          "id": "product_url",
+          "label": "Product link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.testimonials",
+      "category": "t:categories.other_sections",
+      "blocks": {
+        "tab_rv": {
+          "type": "category_tab",
+          "settings": {
+            "label": "RV",
+            "active": true
+          }
+        },
+        "tab_marine": {
+          "type": "category_tab",
+          "settings": {
+            "label": "Marine"
+          }
+        },
+        "tab_trucking": {
+          "type": "category_tab",
+          "settings": {
+            "label": "Trucking"
+          }
+        },
+        "tab_industrial": {
+          "type": "category_tab",
+          "settings": {
+            "label": "Industrial"
+          }
+        },
+        "tab_lead_acid": {
+          "type": "category_tab",
+          "settings": {
+            "label": "vs. Lead-Acid"
+          }
+        },
+        "tab_american": {
+          "type": "category_tab",
+          "settings": {
+            "label": "American Company"
+          }
+        },
+        "review_1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "A reliable RV power setup means thinking about your entire system",
+            "reviewer_name": "Dr. Denis Phares",
+            "show_verified": true,
+            "product_name": "100Ah 12V LiFePO4 Deep Cycle Battery"
+          }
+        },
+        "review_2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "That's where my passion for coffee really took root. Once again, I found myself camping.",
+            "reviewer_name": "Mt. McKinley",
+            "show_verified": true,
+            "product_name": "100Ah 12V LiFePO4 Deep Cycle Battery"
+          }
+        },
+        "review_3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I've got over 70 and have never had one of these batteries go bad",
+            "reviewer_name": "Rick Harrison",
+            "show_verified": true,
+            "product_name": "100Ah 12V LiFePO4 Deep Cycle Battery"
+          }
+        }
+      },
+      "block_order": [
+        "tab_rv",
+        "tab_marine",
+        "tab_trucking",
+        "tab_industrial",
+        "tab_lead_acid",
+        "tab_american",
+        "review_1",
+        "review_2",
+        "review_3"
+      ]
+    }
+  ]
+}
+{% endschema %}
