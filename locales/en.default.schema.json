@@ -53,6 +53,7 @@
     "cart_features": "Cart features",
     "colors": "Colors",
     "collection_page": "Collection page",
+    "contact": "Contact",
     "complementary_products": "Complementary products must be set up using the Search & Discovery app. [Learn more](https://help.shopify.com/manual/online-store/search-and-discovery)",
     "content_layout": "Content layout",
     "content_width": "Content width only applies when the section width is set to full width.",
@@ -434,7 +435,8 @@
     "video_section": "Video",
     "view_all_button": "View all",
     "pills": "Pills",
-    "comparison_slider": "Comparison slider"
+    "comparison_slider": "Comparison slider",
+    "promo_bar": "Promo bar"
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -986,6 +988,7 @@
     "padding_top": "Padding top",
     "page": "Page",
     "page_transition_enabled": "Page transition",
+    "phone_number": "Phone number",
     "page_width": "Page width",
     "pagination": "Pagination",
     "percent_height": "Percent height",
@@ -1009,6 +1012,9 @@
     "primary_font": "Primary font",
     "primary_hover_color": "Hover links",
     "product": "Product",
+    "promo_link_text": "Link text",
+    "promo_link_url": "Link URL",
+    "promo_text": "Promo text",
     "product_and_card_title_case": "Product and card title case",
     // Checkbox to enable image carousel within product cards
     "product_card_carousel": "Show carousel",
@@ -1087,11 +1093,13 @@
     "show_inventory_quantity": "Show low stock quantity",
     "show_pickup_availability": "Show pickup availability",
     "show_powered_by_shopify": "Show \"Powered by Shopify\"",
+    "show_phone": "Show phone number",
     "show_sale_price_first": "Show sale price first",
     "show_search": "Show search",
     "show_second_image_on_hover": "Show second image on hover",
     "show_swatch_label": "Text labels for swatches",
     "show_tax_info": "Tax information",
+    "show_utility_links": "Show utility links",
     // Font size or element dimensions setting
     "size": "Size",
     "skus": "SKUs",
@@ -1136,6 +1144,11 @@
     // Measurement unit selector (pixel vs percent)
     "unit": "Unit",
     "use_inverse_logo": "Use inverse logo",
+    "utility_link_1_show_icon": "Show icon",
+    "utility_link_1_text": "Link 1 text",
+    "utility_link_1_url": "Link 1 URL",
+    "utility_link_2_text": "Link 2 text",
+    "utility_link_2_url": "Link 2 URL",
     "variant_images": "Variant images",
     "variant_per_page": "Variants per page",
     "vendor": "Vendor",

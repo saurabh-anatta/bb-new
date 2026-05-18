@@ -1,8 +1,8 @@
 {% liquid
-  assign order = 'logo,menu,localization,search,drawer_search,actions'
+  assign order = 'logo,menu,localization,phone,search,drawer_search,actions'
 
   if shop.customer_accounts_enabled
-    assign order = 'drawer_search,logo,menu,localization,search,actions'
+    assign order = 'drawer_search,logo,menu,localization,phone,search,actions'
   endif
 
   assign rows = 'top,bottom' | split: ','
@@ -61,6 +61,13 @@
     render 'header-actions', customer_account_menu: section.settings.customer_account_menu, display_style: section.settings.actions_display_style, section: section
   endcapture
 
+  capture phone
+    if section.settings.show_phone and section.settings.phone_number != blank
+      assign phone_href = section.settings.phone_number | remove: '.' | remove: '-' | remove: ' ' | remove: '(' | remove: ')'
+      echo '<a href="tel:' | append: phone_href | append: '" class="header-phone-pill mobile:hidden"><span class="header-phone-pill__text">' | append: section.settings.phone_number | append: '</span></a>'
+    endif
+  endcapture
+
   if shop.customer_accounts_enabled
     assign search_class = 'search-action--hidden-on-drawer'
   endif
@@ -69,23 +76,23 @@
   if section.settings.localization_position == 'left'
     if section.settings.search_position == 'left'
       if shop.customer_accounts_enabled
-        assign order = 'drawer_search,logo,search,localization,menu,actions'
+        assign order = 'drawer_search,logo,search,localization,menu,phone,actions'
       else
-        assign order = 'logo,search,localization,menu,drawer_search,actions'
+        assign order = 'logo,search,localization,menu,phone,drawer_search,actions'
       endif
     else
       if shop.customer_accounts_enabled
-        assign order = 'drawer_search,logo,localization,menu,search,actions'
+        assign order = 'drawer_search,logo,localization,menu,phone,search,actions'
       else
-        assign order = 'logo,localization,menu,search,drawer_search,actions'
+        assign order = 'logo,localization,menu,phone,search,drawer_search,actions'
       endif
     endif
   else
     if section.settings.search_position == 'left'
       if shop.customer_accounts_enabled
-        assign order = 'drawer_search,logo,search,menu,localization,actions'
+        assign order = 'drawer_search,logo,search,menu,localization,phone,actions'
       else
-        assign order = 'logo,search,menu,localization,drawer_search,actions'
+        assign order = 'logo,search,menu,localization,phone,drawer_search,actions'
       endif
     endif
   endif
@@ -366,7 +373,8 @@
         actions: actions,
         localization: localization_markup,
         search: search,
-        drawer_search: drawer_search
+        drawer_search: drawer_search,
+        phone: phone
       %}
     {% endcapture %}
 
@@ -1104,6 +1112,53 @@
     font-family: var(--menu-localization-font);
     font-size: var(--menu-localization-font-size);
   }
+
+  /* Phone pill styles */
+  .header-phone-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-2xs);
+    background-color: #F4F4F6;
+    border-radius: 48px;
+    padding: 4px 24px;
+    text-decoration: none;
+    color: var(--color-foreground);
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    line-height: 25px;
+  }
+
+  .header-phone-pill:hover {
+    text-decoration: none;
+    opacity: 0.8;
+  }
+
+  /* Header box-shadow */
+  #header-component {
+    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.03);
+  }
+
+  /* Nav gap override for desktop */
+  @media screen and (min-width: 990px) {
+    .header .menu-list {
+      --menu-horizontal-gap: 64px;
+    }
+
+    .header .menu-list__link-title {
+      padding-inline: 32px;
+    }
+  }
+
+  /* Border color override */
+  .header__row--top:not(.divider--page-width),
+  .header__row--top.divider--page-width .header__columns,
+  .header__row--bottom {
+    border-bottom-color: #F2F2F2;
+  }
 {% endstylesheet %}
 
 {% unless request.design_mode %}
@@ -1354,6 +1409,22 @@
       ],
       "default": "top",
       "visible_if": "{{ section.settings.show_country or section.settings.show_language }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.contact"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone",
+      "label": "t:settings.show_phone",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "t:settings.phone_number",
+      "visible_if": "{{ section.settings.show_phone }}"
     },
     {
       "type": "header",

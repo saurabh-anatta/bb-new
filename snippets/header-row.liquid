@@ -12,6 +12,7 @@
   @param {string} [localization] - Captured HTML for language/country selector
   @param {string} [search] - Captured HTML for search input
   @param {string} [drawer_search] - Captured HTML for drawer-based search
+  @param {string} [phone] - Captured HTML for the phone number pill
 {% enddoc %}
 
 {%- liquid
@@ -32,6 +33,8 @@
 
     case item
       when 'actions'
+        assign item_column = 'right'
+      when 'phone'
         assign item_column = 'right'
     endcase
 
@@ -86,6 +89,8 @@
               {{ drawer_search }}
             {% when 'actions' %}
               {{ actions }}
+            {% when 'phone' %}
+              {{ phone }}
           {% endcase %}
         {% endunless %}
       {% endfor %}

@@ -1,0 +1,256 @@
+<div
+  class="promo-bar section section--full-width-margin section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+  style="
+    --padding-block-start: {{ section.settings.padding-block-start }}px;
+    --padding-block-end: {{ section.settings.padding-block-end }}px;
+  "
+>
+  <div class="promo-bar__inner">
+    <div class="promo-bar__center">
+      {%- if section.settings.promo_text != blank -%}
+        <span class="promo-bar__text">{{ section.settings.promo_text }}</span>
+      {%- endif -%}
+      {%- if section.settings.promo_link_text != blank -%}
+        <a
+          href="{{ section.settings.promo_link_url | default: '#' }}"
+          class="promo-bar__link promo-bar__link--cta"
+        >
+          {{- section.settings.promo_link_text -}}
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_utility_links -%}
+      <div class="promo-bar__right mobile:hidden">
+        {%- if section.settings.utility_link_1_text != blank -%}
+          <a
+            href="{{ section.settings.utility_link_1_url | default: '#' }}"
+            class="promo-bar__link promo-bar__link--utility"
+          >
+            {%- if section.settings.utility_link_1_show_icon -%}
+              <span class="promo-bar__icon">
+                {{ 'marker-02.svg' | inline_asset_content }}
+              </span>
+            {%- endif -%}
+            {{- section.settings.utility_link_1_text -}}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.utility_link_2_text != blank -%}
+          <a
+            href="{{ section.settings.utility_link_2_url | default: '#' }}"
+            class="promo-bar__link promo-bar__link--utility"
+          >
+            {{- section.settings.utility_link_2_text -}}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .promo-bar {
+    --padding-block-start: 11px;
+    --padding-block-end: 12px;
+  }
+
+  .promo-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-block-start: var(--padding-block-start);
+    padding-block-end: var(--padding-block-end);
+  }
+
+  .promo-bar__center {
+    display: flex;
+    gap: var(--gap-sm);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .promo-bar__text {
+    font-size: 0.75rem;
+    line-height: 17px;
+  }
+
+  .promo-bar__link {
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-size: 0.75rem;
+    line-height: 17px;
+  }
+
+  .promo-bar__link--cta {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .promo-bar__link--utility {
+    text-decoration: underline;
+    display: flex;
+    align-items: center;
+    gap: var(--gap-2xs);
+  }
+
+  .promo-bar__link:hover {
+    opacity: 0.8;
+  }
+
+  .promo-bar__icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .promo-bar__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .promo-bar__right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: var(--gap-lg);
+    align-items: center;
+  }
+
+  @media screen and (max-width: 989px) {
+    .promo-bar__right {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.promo_bar",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:content.text"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "promo_text",
+      "label": "t:settings.promo_text",
+      "default": "FREE Ground Shipping"
+    },
+    {
+      "type": "text",
+      "id": "promo_link_text",
+      "label": "t:settings.promo_link_text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "promo_link_url",
+      "label": "t:settings.promo_link_url"
+    },
+    {
+      "type": "header",
+      "content": "t:content.link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_utility_links",
+      "label": "t:settings.show_utility_links",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "utility_link_1_text",
+      "label": "t:settings.utility_link_1_text",
+      "default": "Find a Dealer/Installer",
+      "visible_if": "{{ section.settings.show_utility_links }}"
+    },
+    {
+      "type": "url",
+      "id": "utility_link_1_url",
+      "label": "t:settings.utility_link_1_url"
+    },
+    {
+      "type": "checkbox",
+      "id": "utility_link_1_show_icon",
+      "label": "t:settings.utility_link_1_show_icon",
+      "default": true,
+      "visible_if": "{{ section.settings.show_utility_links }}"
+    },
+    {
+      "type": "text",
+      "id": "utility_link_2_text",
+      "label": "t:settings.utility_link_2_text",
+      "default": "Commercial Sales",
+      "visible_if": "{{ section.settings.show_utility_links }}"
+    },
+    {
+      "type": "url",
+      "id": "utility_link_2_url",
+      "label": "t:settings.utility_link_2_url"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-5"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "t:options.page"
+        },
+        {
+          "value": "full-width",
+          "label": "t:options.full"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    }
+  ],
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "presets": [
+    {
+      "name": "t:names.promo_bar"
+    }
+  ]
+}
+{% endschema %}
