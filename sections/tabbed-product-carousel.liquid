@@ -2,37 +2,26 @@
   assign heading = section.settings.heading
   assign description = section.settings.description
   assign products_to_show = section.settings.products_to_show
+  assign collections = section.settings.collections
+  assign has_collections = false
+  if collections.size > 0
+    assign has_collections = true
+  endif
 
-  assign tab_labels = ''
-  assign tab_collections = ''
-  assign tab_count = 0
-  assign first_active_index = -1
-
-  for i in (1..5)
-    assign label_key = 'tab_' | append: i | append: '_label'
-    assign collection_key = 'tab_' | append: i | append: '_collection'
-    assign label = section.settings[label_key]
-    assign col = section.settings[collection_key]
-
-    if label != blank
-      assign tab_count = tab_count | plus: 1
-
-      if col != blank and first_active_index == -1
-        assign first_active_index = i
-      endif
-    endif
-  endfor
-
-  if first_active_index == -1
+  unless has_collections
+    assign fallback_tab_count = 0
+    assign first_fallback_index = -1
     for i in (1..5)
       assign label_key = 'tab_' | append: i | append: '_label'
       assign label = section.settings[label_key]
       if label != blank
-        assign first_active_index = i
-        break
+        assign fallback_tab_count = fallback_tab_count | plus: 1
+        if first_fallback_index == -1
+          assign first_fallback_index = i
+        endif
       endif
     endfor
-  endif
+  endunless
 %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
@@ -57,7 +46,32 @@
         </h2>
       {% endif %}
 
-      {% if tab_count > 0 %}
+      {% if has_collections %}
+        <div class="tabbed-product-carousel__tabs-wrapper">
+          <div class="tabbed-product-carousel__tabs" role="tablist">
+            {% for col in collections %}
+              {% assign tab_index = forloop.index %}
+              {% assign label_key = 'tab_' | append: tab_index | append: '_label' %}
+              {% assign custom_label = section.settings[label_key] %}
+
+              <button
+                type="button"
+                class="tabbed-product-carousel__tab{% if forloop.first %} tabbed-product-carousel__tab--active{% endif %}"
+                role="tab"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-controls="tabpanel-{{ section.id }}-{{ tab_index }}"
+                data-tab-index="{{ tab_index }}"
+              >
+                {% if custom_label != blank %}
+                  {{ custom_label | escape }}
+                {% else %}
+                  {{ col.title | escape }}
+                {% endif %}
+              </button>
+            {% endfor %}
+          </div>
+        </div>
+      {% elsif fallback_tab_count > 0 %}
         <div class="tabbed-product-carousel__tabs-wrapper">
           <div class="tabbed-product-carousel__tabs" role="tablist">
             {% for i in (1..5) %}
@@ -67,9 +81,9 @@
               {% if label != blank %}
                 <button
                   type="button"
-                  class="tabbed-product-carousel__tab{% if i == first_active_index %} tabbed-product-carousel__tab--active{% endif %}"
+                  class="tabbed-product-carousel__tab{% if i == first_fallback_index %} tabbed-product-carousel__tab--active{% endif %}"
                   role="tab"
-                  aria-selected="{% if i == first_active_index %}true{% else %}false{% endif %}"
+                  aria-selected="{% if i == first_fallback_index %}true{% else %}false{% endif %}"
                   aria-controls="tabpanel-{{ section.id }}-{{ i }}"
                   data-tab-index="{{ i }}"
                 >
@@ -89,29 +103,38 @@
     </div>
 
     <div class="tabbed-product-carousel__panels">
-      {% for i in (1..5) %}
-        {% assign label_key = 'tab_' | append: i | append: '_label' %}
-        {% assign collection_key = 'tab_' | append: i | append: '_collection' %}
-        {% assign label = section.settings[label_key] %}
-        {% assign col = section.settings[collection_key] %}
-
-        {% if label != blank %}
+      {% if has_collections %}
+        {% for col in collections %}
           <div
             class="tabbed-product-carousel__panel"
-            id="tabpanel-{{ section.id }}-{{ i }}"
+            id="tabpanel-{{ section.id }}-{{ forloop.index }}"
             role="tabpanel"
-            {% unless i == first_active_index %}hidden{% endunless %}
+            {% unless forloop.first %}hidden{% endunless %}
           >
             <div class="tabbed-product-carousel__products">
-              {% if col != blank %}
-                {% for product in col.products limit: products_to_show %}
-                  <div class="tabbed-product-carousel__card">
-                    {% # theme-check-disable UniqueStaticBlockId %}
-                      {% content_for 'block', type: '_product-card', id: 'product-card', closest.product: product %}
-                    {% # theme-check-enable UniqueStaticBlockId %}
-                  </div>
-                {% endfor %}
-              {% else %}
+              {% for product in col.products limit: products_to_show %}
+                <div class="tabbed-product-carousel__card">
+                  {% # theme-check-disable UniqueStaticBlockId %}
+                    {% content_for 'block', type: '_product-card', id: 'product-card', closest.product: product %}
+                  {% # theme-check-enable UniqueStaticBlockId %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      {% elsif fallback_tab_count > 0 %}
+        {% for i in (1..5) %}
+          {% assign label_key = 'tab_' | append: i | append: '_label' %}
+          {% assign label = section.settings[label_key] %}
+
+          {% if label != blank %}
+            <div
+              class="tabbed-product-carousel__panel"
+              id="tabpanel-{{ section.id }}-{{ i }}"
+              role="tabpanel"
+              {% unless i == first_fallback_index %}hidden{% endunless %}
+            >
+              <div class="tabbed-product-carousel__products">
                 {% for j in (1..products_to_show) %}
                   <div class="tabbed-product-carousel__card">
                     {% # theme-check-disable UniqueStaticBlockId %}
@@ -119,11 +142,23 @@
                     {% # theme-check-enable UniqueStaticBlockId %}
                   </div>
                 {% endfor %}
-              {% endif %}
+              </div>
             </div>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <div class="tabbed-product-carousel__panel">
+          <div class="tabbed-product-carousel__products">
+            {% for j in (1..products_to_show) %}
+              <div class="tabbed-product-carousel__card">
+                {% # theme-check-disable UniqueStaticBlockId %}
+                  {% content_for 'block', type: '_product-card', id: 'product-card', closest.product: null %}
+                {% # theme-check-enable UniqueStaticBlockId %}
+              </div>
+            {% endfor %}
           </div>
-        {% endif %}
-      {% endfor %}
+        </div>
+      {% endif %}
     </div>
   </div>
 </tabbed-product-carousel>
@@ -366,14 +401,19 @@
       "content": "t:content.tabs"
     },
     {
+      "type": "collection_list",
+      "id": "collections",
+      "label": "t:settings.collection_list",
+      "limit": 5
+    },
+    {
+      "type": "paragraph",
+      "content": "t:content.tab_label_overrides"
+    },
+    {
       "type": "text",
       "id": "tab_1_label",
       "label": "t:settings.tab_label"
-    },
-    {
-      "type": "collection",
-      "id": "tab_1_collection",
-      "label": "t:settings.tab_collection"
     },
     {
       "type": "text",
@@ -381,19 +421,9 @@
       "label": "t:settings.tab_label"
     },
     {
-      "type": "collection",
-      "id": "tab_2_collection",
-      "label": "t:settings.tab_collection"
-    },
-    {
       "type": "text",
       "id": "tab_3_label",
       "label": "t:settings.tab_label"
-    },
-    {
-      "type": "collection",
-      "id": "tab_3_collection",
-      "label": "t:settings.tab_collection"
     },
     {
       "type": "text",
@@ -401,19 +431,9 @@
       "label": "t:settings.tab_label"
     },
     {
-      "type": "collection",
-      "id": "tab_4_collection",
-      "label": "t:settings.tab_collection"
-    },
-    {
       "type": "text",
       "id": "tab_5_label",
       "label": "t:settings.tab_label"
-    },
-    {
-      "type": "collection",
-      "id": "tab_5_collection",
-      "label": "t:settings.tab_collection"
     },
     {
       "type": "range",
@@ -475,8 +495,8 @@
       "category": "t:categories.products",
       "settings": {
         "heading": "Explore Best Sellers",
-        "tab_1_label": "LiFePO₄ Batteries",
-        "tab_2_label": "Smart LiFePO₄ Batteries",
+        "tab_1_label": "LiFePO\u2084 Batteries",
+        "tab_2_label": "Smart LiFePO\u2084 Batteries",
         "tab_3_label": "Inverter Power",
         "tab_4_label": "Solar Integration",
         "tab_5_label": "Alternator Charging",

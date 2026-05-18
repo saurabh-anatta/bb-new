@@ -131,6 +131,7 @@
     "section_layout": "Section layout",
     "section_link": "Section link",
     "tabs": "Tabs",
+    "tab_label_overrides": "Optional. Override collection titles as tab labels. Label 1 applies to the first collection, and so on.",
     "section_size": "Section size",
     // Section header for width and height controls
     "size": "Size",
