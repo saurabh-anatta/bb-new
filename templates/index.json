@@ -609,12 +609,301 @@
         "review_4",
         "review_5"
       ]
+    },
+    "content-carousel": {
+      "type": "carousel",
+      "settings": {
+        "columns": 4,
+        "mobile_columns": "1",
+        "section_width": "page-width",
+        "columns_gap": 32,
+        "color_scheme": "scheme-1",
+        "icons_style": "arrows_large",
+        "icons_shape": "none",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "static-header": {
+          "type": "group",
+          "static": true,
+          "settings": {
+            "content_direction": "column",
+            "horizontal_alignment_flex_direction_column": "center",
+            "gap": 16,
+            "width": "fill",
+            "height": "fit",
+            "padding-block-end": 16
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Power system education, built by engineers</p>",
+                "width": "100%",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "2rem",
+                "line_height": "normal",
+                "letter_spacing": "tight",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)"
+              }
+            },
+            "cta_button": {
+              "type": "button",
+              "settings": {
+                "label": "Read our blog",
+                "style_class": "link"
+              }
+            }
+          },
+          "block_order": ["heading", "cta_button"]
+        },
+        "static-carousel-content": {
+          "type": "_carousel-content",
+          "static": true,
+          "settings": {
+            "inherit_color_scheme": true,
+            "position": "top",
+            "height": "fit"
+          },
+          "blocks": {
+            "card_1": {
+              "type": "_card",
+              "settings": {
+                "content_direction": "column",
+                "gap": 16
+              },
+              "blocks": {
+                "image_1": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/rectangle-3320-mobile-I8681153786811475.png",
+                    "image_ratio": "square",
+                    "width": "fill",
+                    "border_radius": 4
+                  }
+                },
+                "title_1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>The Best Deep Cycle RV Batteries for Your Camper</p>",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "color": "var(--color-foreground-heading)"
+                  }
+                },
+                "button_1": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Read our blog",
+                    "style_class": "link"
+                  }
+                }
+              },
+              "block_order": ["image_1", "title_1", "button_1"]
+            },
+            "card_2": {
+              "type": "_card",
+              "settings": {
+                "content_direction": "column",
+                "gap": 16
+              },
+              "blocks": {
+                "image_2": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/rectangle-3319-mobile-I8681153786811480.png",
+                    "image_ratio": "square",
+                    "width": "fill",
+                    "border_radius": 4
+                  }
+                },
+                "title_2": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>What Battery Cable Size Should I Use?</p>",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "color": "var(--color-foreground-heading)"
+                  }
+                },
+                "button_2": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Read more",
+                    "style_class": "link"
+                  }
+                }
+              },
+              "block_order": ["image_2", "title_2", "button_2"]
+            },
+            "card_3": {
+              "type": "_card",
+              "settings": {
+                "content_direction": "column",
+                "gap": 16
+              },
+              "blocks": {
+                "image_3": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/rectangle-3319-desktop-I66312016631155.png",
+                    "image_ratio": "square",
+                    "width": "fill",
+                    "border_radius": 4
+                  }
+                },
+                "title_3": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Can You Put a LiFePO4 Lithium Battery Inside Your Car?</p>",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "color": "var(--color-foreground-heading)"
+                  }
+                },
+                "button_3": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Read more",
+                    "style_class": "link"
+                  }
+                }
+              },
+              "block_order": ["image_3", "title_3", "button_3"]
+            },
+            "card_4": {
+              "type": "_card",
+              "settings": {
+                "content_direction": "column",
+                "gap": 16
+              },
+              "blocks": {
+                "image_4": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/rectangle-3319-desktop-I66312016631160.png",
+                    "image_ratio": "square",
+                    "width": "fill",
+                    "border_radius": 4
+                  }
+                },
+                "title_4": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>The Basics of Lithium Ion Batteries</p>",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "color": "var(--color-foreground-heading)"
+                  }
+                },
+                "button_4": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Read more",
+                    "style_class": "link"
+                  }
+                }
+              },
+              "block_order": ["image_4", "title_4", "button_4"]
+            },
+            "card_5": {
+              "type": "_card",
+              "settings": {
+                "content_direction": "column",
+                "gap": 16
+              },
+              "blocks": {
+                "image_5": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/rectangle-3319-desktop-I66312016631165.png",
+                    "image_ratio": "square",
+                    "width": "fill",
+                    "border_radius": 4
+                  }
+                },
+                "title_5": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>What Is An Electric Fuse and Why Do They Matter?</p>",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "color": "var(--color-foreground-heading)"
+                  }
+                },
+                "button_5": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Read more",
+                    "style_class": "link"
+                  }
+                }
+              },
+              "block_order": ["image_5", "title_5", "button_5"]
+            },
+            "card_6": {
+              "type": "_card",
+              "settings": {
+                "content_direction": "column",
+                "gap": 16
+              },
+              "blocks": {
+                "image_6": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/rectangle-3319-desktop-I66312016631170.png",
+                    "image_ratio": "square",
+                    "width": "fill",
+                    "border_radius": 4
+                  }
+                },
+                "title_6": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>What It Really Is and Why It Can Be Misleading</p>",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "color": "var(--color-foreground-heading)"
+                  }
+                },
+                "button_6": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Read more",
+                    "style_class": "link"
+                  }
+                }
+              },
+              "block_order": ["image_6", "title_6", "button_6"]
+            }
+          },
+          "block_order": ["card_1", "card_2", "card_3", "card_4", "card_5", "card_6"]
+        }
+      }
     }
   },
   "order": [
     "hero-carousel",
     "image-title-cards",
     "tabbed-product-carousel",
-    "testimonials"
+    "testimonials",
+    "content-carousel"
   ]
 }
