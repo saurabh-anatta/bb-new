@@ -133,6 +133,7 @@
     "section_size": "Section size",
     // Section header for width and height controls
     "size": "Size",
+    "slideshow": "Slideshow",
     "slideshow_width": "Slide width",
     "social_media": "Social media",
     "submit_button": "Submit button",
@@ -143,6 +144,7 @@
     "text_presets": "Text presets",
     "thumbnails": "Thumbnails",
     "transparent_background": "Transparent background",
+    "trust_badge": "Trust badge",
     "typography": "Typography",
     "typography_primary": "Primary typography",
     "typography_secondary": "Secondary typography",
@@ -324,6 +326,7 @@
     "heading": "Heading",
     "hero": "Hero",
     "hero_bottom_aligned": "Hero: Bottom aligned",
+    "hero_carousel": "Hero carousel",
     "hero_marquee": "Hero: Marquee",
     "icon": "Icon",
     "icons": "Icons",
@@ -795,6 +798,8 @@
     "bottom_row": "Bottom row",
     "bottom_padding": "Bottom padding",
     "button": "Button",
+    "button_label": "Button label",
+    "button_link": "Button link",
     "button_text_case": "Text case",
     "card_height": "Card height",
     "card_hover_effect": "Card hover effect",
@@ -843,6 +848,7 @@
     "default": "Default",
     "default_logo": "Default logo",
     "desktop_height": "Desktop height",
+    "desktop_image": "Desktop image",
     "desktop_pagination": "Desktop pagination",
     "direction": "Direction",
     // Button appearance for email signup form
@@ -966,6 +972,7 @@
     "mobile_card_size": "Mobile card size",
     "mobile_columns": "Mobile columns",
     "mobile_height": "Mobile height",
+    "mobile_image": "Mobile image",
     "mobile_logo_image": "Mobile logo",
     "mobile_pagination": "Mobile pagination",
     "mobile_quick_add": "Mobile quick add",
@@ -1087,6 +1094,7 @@
     "show_author": "Author",
     "show_alignment": "Show alignment",
     "show_count": "Show count",
+    "show_trust_badge": "Show trust badge",
     "show_date": "Date",
     "show_filter_label": "Text labels for applied filters",
     "show_grid_layout_selector": "Show grid layout selector",
@@ -1117,6 +1125,7 @@
     // Icon line thickness setting label
     "stroke": "Stroke",
     "style": "Style",
+    "subheading": "Subheading",
     "submenu_size": "Submenu size",
     "success_color": "Success",
     "swatches": "Swatches",
@@ -1130,6 +1139,7 @@
     "text_presets": "Text presets",
     // Pixel width setting for borders, dividers, or lines
     "thickness": "Thickness",
+    "thumbnail": "Thumbnail",
     "title": "Title",
     // Label for range input controlling top spacing/margin
     "top": "Top",
@@ -1137,6 +1147,7 @@
     "top_padding": "Top padding",
     "transition_to_main_product": "Product card to product page transition",
     "transparent_background": "Transparent background",
+    "trust_text": "Trust text",
     // Label for dropdown to select type/category
     "type": "Type",
     "type_preset": "Text preset",

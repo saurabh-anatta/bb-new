@@ -1,4 +1,56 @@
 {
-  "sections": {},
-  "order": []
+  "sections": {
+    "hero-carousel": {
+      "type": "hero-carousel",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "color_scheme": "scheme-6",
+        "show_trust_badge": true,
+        "trust_text": "Trusted by over 5 million users",
+        "slide_height_desktop": 560,
+        "slide_height_mobile": 503,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      },
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-98-mobile-I8681093286810625.png",
+            "mobile_image": "shopify://shop_images/hero-mobile-I8681093286810653.png",
+            "thumbnail": "shopify://shop_images/rectangle-98-mobile-I8681093286810625.png",
+            "heading": "Conquer Every Climate.",
+            "subheading": "Reliable lithium power in the harshest conditions.",
+            "button_label": "Shop now",
+            "button_link": "/collections/all"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-98-mobile-I8681093286810628.png",
+            "mobile_image": "shopify://shop_images/hero-mobile-I8681093286810653.png",
+            "thumbnail": "shopify://shop_images/rectangle-98-mobile-I8681093286810628.png",
+            "heading": "Conquer Every Climate.",
+            "subheading": "Reliable lithium power in the harshest conditions.",
+            "button_label": "Shop now"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-98-mobile-I8681093286810627.png",
+            "mobile_image": "shopify://shop_images/hero-mobile-I8681093286810653.png",
+            "thumbnail": "shopify://shop_images/rectangle-98-mobile-I8681093286810627.png",
+            "heading": "Conquer Every Climate.",
+            "subheading": "Reliable lithium power in the harshest conditions.",
+            "button_label": "Shop now"
+          }
+        }
+      },
+      "block_order": ["slide_1", "slide_2", "slide_3"]
+    }
+  },
+  "order": ["hero-carousel"]
 }
