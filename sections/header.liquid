@@ -57,7 +57,24 @@
     content_for 'block', type: '_header-menu', id: 'header-menu', variant: 'navigation_bar', transparent: transparent
   endcapture
 
+  capture phone_cta
+    if section.settings.show_phone and section.settings.phone_text != blank
+      if section.settings.phone_url != blank
+        assign phone_href = section.settings.phone_url
+      else
+        assign phone_digits = section.settings.phone_text | remove: '.' | remove: ' ' | remove: '-' | remove: '(' | remove: ')'
+        assign phone_href = 'tel:' | append: phone_digits
+      endif
+      echo '<a href="'
+      echo phone_href
+      echo '" class="header-phone-cta mobile:hidden">'
+      echo section.settings.phone_text
+      echo '</a>'
+    endif
+  endcapture
+
   capture actions
+    echo phone_cta
     render 'header-actions', customer_account_menu: section.settings.customer_account_menu, display_style: section.settings.actions_display_style, section: section
   endcapture
 
@@ -1104,7 +1121,44 @@
     font-family: var(--menu-localization-font);
     font-size: var(--menu-localization-font-size);
   }
+
+  .header-phone-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #F4F4F6;
+    border-radius: 48px;
+    padding: 4px 24px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-foreground);
+    white-space: nowrap;
+    font-family: var(--font-heading--family);
+    line-height: 25px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .header-phone-cta {
+      display: none;
+    }
+  }
 {% endstylesheet %}
+
+{% style %}
+  #shopify-section-{{ section.id }} .menu-list {
+    --menu-horizontal-gap: 64px;
+  }
+
+  #shopify-section-{{ section.id }} header-component {
+    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.03);
+  }
+
+  #shopify-section-{{ section.id }} .header__row--top {
+    border-bottom-color: #F2F2F2;
+  }
+{% endstyle %}
 
 {% unless request.design_mode %}
   <script type="module">
@@ -1354,6 +1408,29 @@
       ],
       "default": "top",
       "visible_if": "{{ section.settings.show_country or section.settings.show_language }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.phone"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone",
+      "label": "t:settings.show_phone",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "phone_text",
+      "label": "t:settings.phone_text",
+      "default": "855.292.2831",
+      "visible_if": "{{ section.settings.show_phone }}"
+    },
+    {
+      "type": "url",
+      "id": "phone_url",
+      "label": "t:settings.phone_url",
+      "visible_if": "{{ section.settings.show_phone }}"
     },
     {
       "type": "header",
