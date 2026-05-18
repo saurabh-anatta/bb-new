@@ -6,18 +6,18 @@
     assign total_blocks = section.blocks.size
 
     # Grid layout calculations
-    assign grid_columns = total_blocks | at_most: 4
+    assign grid_columns = total_blocks | at_most: 6
 
     # Calculate last row counts using modulo arithmetic
     # last_row_count = (total_blocks - 1) % N + 1
-    assign last_row_count = total_blocks | minus: 1 | modulo: 4 | plus: 1
+    assign last_row_count = total_blocks | minus: 1 | modulo: 6 | plus: 1
     assign tablet_last_row_count = total_blocks | minus: 1 | modulo: 2 | plus: 1
 
     # Check if there are orphaned elements (single item in last row)
     assign has_isolated_grid_item_desktop = false
     assign has_isolated_grid_item_tablet = false
 
-    if total_blocks > 4 and last_row_count == 1
+    if total_blocks > 6 and last_row_count == 1
       assign has_isolated_grid_item_desktop = true
     endif
 
@@ -80,6 +80,20 @@
 
     .footer-content--isolated-grid-item-desktop > :last-child {
       grid-column: 1 / -1;
+    }
+  }
+  .footer-content .menu__heading {
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 749px) {
+    .footer-content {
+      gap: 32px;
+    }
+
+    .footer-content > :first-child {
+      align-items: center;
+      text-align: center;
     }
   }
 {% endstylesheet %}

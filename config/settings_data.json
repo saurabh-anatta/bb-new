@@ -317,6 +317,45 @@
           "selected_variant_hover_border_color": "#02267E"
         }
       },
+      "scheme-7": {
+        "settings": {
+          "background": "#151515",
+          "foreground_heading": "#FFFFFF",
+          "foreground": "#C9CAD4",
+          "primary": "#C9CAD4",
+          "primary_hover": "#FFFFFF",
+          "border": "#888B95",
+          "shadow": "#000000",
+          "primary_button_background": "#151515",
+          "primary_button_text": "#FFFFFF",
+          "primary_button_border": "#FFFFFF",
+          "primary_button_hover_background": "#FFFFFF",
+          "primary_button_hover_text": "#151515",
+          "primary_button_hover_border": "#FFFFFF",
+          "secondary_button_background": "rgba(0,0,0,0)",
+          "secondary_button_text": "#C9CAD4",
+          "secondary_button_border": "#FFFFFF",
+          "secondary_button_hover_background": "#ffffff14",
+          "secondary_button_hover_text": "#FFFFFF",
+          "secondary_button_hover_border": "#FFFFFF",
+          "input_background": "rgba(0,0,0,0)",
+          "input_text_color": "#C9CAD4",
+          "input_border_color": "#FFFFFF",
+          "input_hover_background": "#ffffff0a",
+          "variant_background_color": "#151515",
+          "variant_text_color": "#FFFFFF",
+          "variant_border_color": "#888B95",
+          "variant_hover_background_color": "#333333",
+          "variant_hover_text_color": "#FFFFFF",
+          "variant_hover_border_color": "#FFFFFF",
+          "selected_variant_background_color": "#FFFFFF",
+          "selected_variant_text_color": "#151515",
+          "selected_variant_border_color": "#FFFFFF",
+          "selected_variant_hover_background_color": "#C9CAD4",
+          "selected_variant_hover_text_color": "#151515",
+          "selected_variant_hover_border_color": "#C9CAD4"
+        }
+      },
       "scheme-58084d4c-a86e-4d0a-855e-a0966e5043f7": {
         "settings": {
           "background": "rgba(0,0,0,0)",
@@ -628,7 +667,46 @@
             "selected_variant_hover_border_color": "#02267E"
           }
         },
-        "scheme-58084d4c-a86e-4d0a-855e-a0966e5043f7": {
+        "scheme-7": {
+        "settings": {
+          "background": "#151515",
+          "foreground_heading": "#FFFFFF",
+          "foreground": "#C9CAD4",
+          "primary": "#C9CAD4",
+          "primary_hover": "#FFFFFF",
+          "border": "#888B95",
+          "shadow": "#000000",
+          "primary_button_background": "#151515",
+          "primary_button_text": "#FFFFFF",
+          "primary_button_border": "#FFFFFF",
+          "primary_button_hover_background": "#FFFFFF",
+          "primary_button_hover_text": "#151515",
+          "primary_button_hover_border": "#FFFFFF",
+          "secondary_button_background": "rgba(0,0,0,0)",
+          "secondary_button_text": "#C9CAD4",
+          "secondary_button_border": "#FFFFFF",
+          "secondary_button_hover_background": "#ffffff14",
+          "secondary_button_hover_text": "#FFFFFF",
+          "secondary_button_hover_border": "#FFFFFF",
+          "input_background": "rgba(0,0,0,0)",
+          "input_text_color": "#C9CAD4",
+          "input_border_color": "#FFFFFF",
+          "input_hover_background": "#ffffff0a",
+          "variant_background_color": "#151515",
+          "variant_text_color": "#FFFFFF",
+          "variant_border_color": "#888B95",
+          "variant_hover_background_color": "#333333",
+          "variant_hover_text_color": "#FFFFFF",
+          "variant_hover_border_color": "#FFFFFF",
+          "selected_variant_background_color": "#FFFFFF",
+          "selected_variant_text_color": "#151515",
+          "selected_variant_border_color": "#FFFFFF",
+          "selected_variant_hover_background_color": "#C9CAD4",
+          "selected_variant_hover_text_color": "#151515",
+          "selected_variant_hover_border_color": "#C9CAD4"
+        }
+      },
+      "scheme-58084d4c-a86e-4d0a-855e-a0966e5043f7": {
           "settings": {
             "background": "rgba(0,0,0,0)",
             "foreground_heading": "#151515",
