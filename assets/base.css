@@ -459,8 +459,8 @@ p:empty {
   grid-column: 2;
 }
 
-/* Make the actual section background transparent, and instead apply it to a separate sibling element to enable stacking with hero shadow  */
-.shopify-section:not(.header-section) :is(.section, .cart-summary) {
+/* Make the actual section background transparent only when a .section-background sibling is present to handle the background (enables stacking with hero shadow). Custom sections without a .section-background keep their own background. */
+.shopify-section:not(.header-section):has(> .section-background) :is(.section, .cart-summary) {
   background: transparent;
 }
 
