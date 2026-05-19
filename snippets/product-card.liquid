@@ -49,19 +49,6 @@
     assign rating_count = product.metafields.reviews.rating_count
   endif
 
-  assign card_subtitle = product.metafields.custom.subtitle.value
-  if card_subtitle == blank
-    assign card_subtitle = product.metafields.custom.card_description.value
-  endif
-  if card_subtitle == blank and product.description != blank
-    assign card_subtitle = product.description | strip_html | truncate: 80
-  endif
-
-  assign feature_highlight = product.metafields.custom.feature_highlight.value
-  if feature_highlight == blank
-    assign feature_highlight = product.metafields.custom.feature.value
-  endif
-
   assign discount_pct = 0
   if product.compare_at_price > product.price
     assign discount_diff = product.compare_at_price | minus: product.price
@@ -146,6 +133,22 @@
       {% if card_badge != blank %}
         <span class="product-card-figma__badge">{{ card_badge }}</span>
       {% endif %}
+      {% if feature_icons != blank %}
+        <ul class="product-card-figma__features">
+          {% assign icons = feature_icons | split: ',' %}
+          {% for icon in icons %}
+            {% if icon == 'bluetooth' %}
+              <li class="product-card-figma__feature-icon" aria-label="Bluetooth">
+                <img src="{{ 'bluetooth.svg' | asset_url }}" alt="" width="24" height="24" loading="lazy">
+              </li>
+            {% elsif icon == 'heated' %}
+              <li class="product-card-figma__feature-icon" aria-label="Heated">
+                <img src="{{ 'heated.svg' | asset_url }}" alt="" width="24" height="24" loading="lazy">
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
     </div>
 
     <div class="product-card-figma__content">
@@ -190,10 +193,6 @@
         </h3>
       </a>
 
-      {% if card_subtitle != blank %}
-        <p class="product-card-figma__subtitle">{{ card_subtitle | escape }}</p>
-      {% endif %}
-
       <div class="product-card-figma__price-row">
         <span class="product-card-figma__price">
           {% if onboarding %}$0.00{% else %}{{ product.price | money }}{% endif %}
@@ -206,70 +205,13 @@
         {% endif %}
       </div>
 
-      {% if feature_highlight != blank %}
-        <details class="product-card-figma__feature-details">
-          <summary class="product-card-figma__feature-summary">
-            <span class="product-card-figma__feature-text">{{ feature_highlight | escape | truncate: 40 }}</span>
-            <svg class="product-card-figma__feature-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-              <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </summary>
-          <div class="product-card-figma__feature-content">
-            <p>{{ feature_highlight | escape }}</p>
-          </div>
-        </details>
-      {% endif %}
-
       <div class="product-card-figma__cta">
         {% if onboarding %}
-          <button type="button" class="product-card-figma__add-button" disabled>
-            <svg class="product-card-figma__plus" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false">
-              <path d="M2.75 7H11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M7 2.75V11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <span class="product-card-figma__add-label">Add to Cart</span>
-          </button>
-          <span class="product-card-figma__learn-more">Learn More</span>
+          <span class="product-card-figma__quickview">Quickview</span>
         {% else %}
-          <form method="post" action="{{ routes.cart_add_url }}" class="product-card-figma__form" enctype="multipart/form-data">
-            <input type="hidden" name="form_type" value="product">
-            <input type="hidden" name="utf8" value="✓">
-            <input type="hidden" name="id" value="{{ variant_to_link.id }}">
-            <input type="hidden" name="quantity" value="1">
-            <button
-              type="submit"
-              class="product-card-figma__add-button"
-              {% if product.available == false %}disabled{% endif %}
-            >
-              <svg class="product-card-figma__plus" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false">
-                <path d="M2.75 7H11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M7 2.75V11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-              <span class="product-card-figma__add-label">
-                {% if product.available %}Add to Cart{% else %}Sold out{% endif %}
-              </span>
-            </button>
-          </form>
-          <a href="{{ product_url }}" class="product-card-figma__learn-more">Learn More</a>
+          <a href="{{ product_url }}" class="product-card-figma__quickview">Quickview</a>
         {% endif %}
       </div>
-
-      {% if feature_icons != blank %}
-        <ul class="product-card-figma__features">
-          {% assign icons = feature_icons | split: ',' %}
-          {% for icon in icons %}
-            {% if icon == 'bluetooth' %}
-              <li class="product-card-figma__feature-icon" aria-label="Bluetooth">
-                <img src="{{ 'bluetooth.svg' | asset_url }}" alt="" width="24" height="24" loading="lazy">
-              </li>
-            {% elsif icon == 'heated' %}
-              <li class="product-card-figma__feature-icon" aria-label="Heated">
-                <img src="{{ 'heated.svg' | asset_url }}" alt="" width="24" height="24" loading="lazy">
-              </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      {% endif %}
     </div>
   </div>
 </product-card>
@@ -360,6 +302,32 @@
     white-space: nowrap;
   }
 
+  .product-card-figma__features {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    pointer-events: none;
+  }
+
+  .product-card-figma__feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-card-figma__feature-icon img {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
   .product-card-figma__content {
     display: flex;
     flex-direction: column;
@@ -423,19 +391,6 @@
     overflow: hidden;
   }
 
-  .product-card-figma__subtitle {
-    margin: 0;
-    font-family: var(--font-body--family);
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.4;
-    color: rgb(var(--color-foreground-rgb) / 0.75);
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
   .product-card-figma__price-row {
     display: flex;
     align-items: center;
@@ -473,135 +428,21 @@
     line-height: 1;
   }
 
-  .product-card-figma__feature-details {
-    border-top: 1px solid rgb(var(--color-foreground-rgb) / 0.1);
-    padding-top: 6px;
-  }
-
-  .product-card-figma__feature-summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    cursor: pointer;
-    list-style: none;
-    font-family: var(--font-body--family);
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 1.4;
-    color: var(--color-foreground);
-  }
-
-  .product-card-figma__feature-summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .product-card-figma__feature-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-
-  .product-card-figma__feature-chevron {
-    flex-shrink: 0;
-    transition: transform 0.2s ease;
-    color: #C9CAD4;
-  }
-
-  .product-card-figma__feature-details[open] .product-card-figma__feature-chevron {
-    transform: rotate(180deg);
-  }
-
-  .product-card-figma__feature-content {
-    padding-block: 8px 0;
-    font-family: var(--font-body--family);
-    font-size: 12px;
-    line-height: 1.4;
-    color: rgb(var(--color-foreground-rgb) / 0.8);
-  }
-
-  .product-card-figma__feature-content p {
-    margin: 0;
-  }
-
   .product-card-figma__cta {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    align-items: flex-start;
     margin-top: 4px;
   }
 
-  .product-card-figma__form {
-    margin: 0;
-    width: 100%;
-  }
-
-  .product-card-figma__add-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    height: 32px;
-    padding: 0 16px;
-    border: 1px solid var(--color-foreground);
-    background: transparent;
-    color: var(--color-foreground);
+  .product-card-figma__quickview {
+    display: inline-block;
     font-family: var(--font-body--family);
     font-weight: 400;
     font-size: 14px;
     line-height: 1.4;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-
-  .product-card-figma__add-button:hover:not([disabled]) {
-    background: var(--color-foreground);
-    color: var(--color-background);
-  }
-
-  .product-card-figma__add-button[disabled] {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-
-  .product-card-figma__plus {
-    flex-shrink: 0;
-  }
-
-  .product-card-figma__learn-more {
-    display: inline-block;
-    font-family: var(--font-body--family);
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 1.4;
     color: var(--color-foreground);
     text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  .product-card-figma__features {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 4px 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .product-card-figma__feature-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .product-card-figma__feature-icon img {
-    display: block;
-    width: 24px;
-    height: 24px;
+    text-underline-offset: 3px;
   }
 
   @media screen and (max-width: 749px) {
@@ -611,10 +452,6 @@
 
     .product-card-figma__title {
       font-size: 15px;
-    }
-
-    .product-card-figma__add-button {
-      font-size: 13px;
     }
   }
 {% endstylesheet %}
