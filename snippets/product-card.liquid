@@ -1,123 +1,620 @@
 {%- doc -%}
-  This snippet is used to render a product card.
-  It is used in the product block, featured product block, and the product card block.
-  The product object is null or when placeholders are rendered.
+  Renders a product card matching the BB Figma design (Product Card - Large).
+  https://www.figma.com/design/Sg1SeYLCpMTw3c6bXKdc5i?node-id=767-1156
 
   @param {object} product - The product object
-  @param {object} children - The children of the product card
+  @param {object} [children] - kept for backward compatibility with dynamic block rendering (ignored)
   @param {object} [block] - The block object
-  @param {number} [product_card_gap] - The gap between the product card children (overrides block settings)
+  @param {number} [product_card_gap] - Override for content row gap (px)
 {%- enddoc -%}
 
 {% assign block_settings = block.settings %}
 
-{% style %}
-  {% if request.visual_preview_mode %}
-    product-card[data-product-transition] {
-      width: 100%;
-      min-width: 250px;
-    }
-  {% endif %}
-{% endstyle %}
-
 {% liquid
-  assign has_quick_add = false
-  if settings.quick_add and product.available
-    assign has_quick_add = true
-  endif
-
-  assign has_mobile_quick_add = false
-  if has_quick_add and settings.mobile_quick_add
-    assign has_mobile_quick_add = true
-  endif
-
-  assign product_card_id = 'product-card-link-' | append: block.id | append: '-' | append: product.id
-  assign product_card_gap_value = product_card_gap | default: block_settings.product_card_gap
-
-  # Logic to determine which variant URL to use (matching swatch selection logic)
-  assign variant_to_link = product.selected_or_first_available_variant
-
-  if settings.transition_to_main_product
-    assign featured_image = variant_to_link.featured_image
-    if featured_image == blank
-      assign featured_image = product.featured_media.preview_image
-    endif
-
-    if featured_image != blank
-      assign featured_media_url = featured_image | image_url: width: 500
-    endif
-  endif
-
   assign onboarding = false
   if product.id == empty or product == blank
     assign onboarding = true
   endif
+
+  assign variant_to_link = product.selected_or_first_available_variant
+  assign product_url = variant_to_link.url | default: product.url
+  assign product_card_id = 'product-card-link-' | append: block.id | append: '-' | append: product.id
+  assign product_card_gap_value = product_card_gap | default: block_settings.product_card_gap | default: 12
+
+  assign featured_image = product.featured_media.preview_image
+  if featured_image == blank
+    assign featured_image = product.featured_image
+  endif
+  assign hover_image = blank
+  if product.media.size > 1
+    assign hover_image = product.media[1].preview_image
+  endif
+
+  assign card_badge = blank
+  for tag in product.tags
+    assign tag_lower = tag | downcase
+    if tag_lower contains 'best seller' or tag_lower == 'bestseller' or tag_lower == 'new' or tag_lower == 'featured' or tag_lower == 'popular' or tag_lower contains 'limited' or tag_lower contains 'sale'
+      assign card_badge = tag
+      break
+    endif
+  endfor
+  if card_badge == blank and product.available == false
+    assign card_badge = 'Sold out'
+  endif
+
+  assign rating = product.metafields.reviews.rating.value.rating
+  assign scale_max = product.metafields.reviews.rating.value.scale_max | default: 5
+  assign rating_count = product.metafields.reviews.rating_count.value
+  if rating_count == blank
+    assign rating_count = product.metafields.reviews.rating_count
+  endif
+
+  assign card_subtitle = product.metafields.custom.subtitle.value
+  if card_subtitle == blank
+    assign card_subtitle = product.metafields.custom.card_description.value
+  endif
+  if card_subtitle == blank and product.description != blank
+    assign card_subtitle = product.description | strip_html | truncate: 80
+  endif
+
+  assign feature_highlight = product.metafields.custom.feature_highlight.value
+  if feature_highlight == blank
+    assign feature_highlight = product.metafields.custom.feature.value
+  endif
+
+  assign discount_pct = 0
+  if product.compare_at_price > product.price
+    assign discount_diff = product.compare_at_price | minus: product.price
+    assign discount_pct = discount_diff | times: 100.0 | divided_by: product.compare_at_price | round
+  endif
+
+  assign feature_icons = ''
+  for tag in product.tags
+    assign tag_lower = tag | downcase | strip
+    case tag_lower
+      when 'bluetooth', 'feature:bluetooth'
+        assign feature_icons = feature_icons | append: 'bluetooth,'
+      when 'heated', 'feature:heated'
+        assign feature_icons = feature_icons | append: 'heated,'
+    endcase
+  endfor
+
+  assign rating_value = rating | default: 0
+  assign rating_filled = rating_value | floor
+  assign rating_decimal = rating_value | minus: rating_filled
+  assign rating_has_half = false
+  if rating_decimal >= 0.3 and rating_decimal < 0.8
+    assign rating_has_half = true
+  elsif rating_decimal >= 0.8
+    assign rating_filled = rating_filled | plus: 1
+  endif
 %}
 
 <product-card
-  class="product-card size-style"
-  style="{% render 'size-style', settings: block_settings %}"
+  class="product-card-figma{% if onboarding %} product-card-figma--placeholder{% endif %}"
   data-product-id="{{ product.id }}"
   id="product-card-{{ block.id }}"
-  {% if settings.transition_to_main_product %}
-    data-product-transition="true"
-    data-featured-media-url="{{ featured_media_url }}"
-    on:click="/handleViewTransition"
-  {% endif %}
   {{ block.shopify_attributes }}
-  {% if onboarding %}
-    data-placeholder="true"
-  {% endif %}
+  {% if onboarding %}data-placeholder="true"{% endif %}
 >
-  <a
-    id="{{ product_card_id | md5 }}"
-    {% unless onboarding %}
-      href="{{ variant_to_link.url }}"
-    {% endunless %}
-    class="product-card__link"
-    ref="productCardLink"
-  >
-    <span class="visually-hidden">
-      {{ product.title }}
-    </span>
-  </a>
   <div
-    class="
-      product-card__content
-      layout-panel-flex
-      layout-panel-flex--column
-      product-grid__card
-      spacing-style
-      border-style
-      gap-style
-      {% if block_settings.inherit_color_scheme == false %} color-{{ block_settings.color_scheme }}{% endif %}
-    "
+    class="product-card-figma__inner{% if block_settings.inherit_color_scheme == false %} color-{{ block_settings.color_scheme }}{% endif %}"
     style="
-      {% render 'border-override', settings: block_settings %}
-      {% render 'layout-panel-style', settings: block_settings %}
-      {% render 'spacing-style', settings: block_settings %}
-      {% render 'gap-style', value: product_card_gap_value, name: 'product-card-gap' %}
-      --quick-add-display: {% if has_quick_add %}flex{% else %}none{% endif %};
-      --quick-add-mobile-display: {% if has_mobile_quick_add %}flex{% else %}none{% endif %};
-      --quick-add-mobile-opacity: {% if has_mobile_quick_add %}1{% else %}0{% endif %};
-      {% if block_settings.padding-inline-start > 0 %}--zoom-out-padding-inline-start: min(var(--padding-xs), {{ block_settings.padding-inline-start | times: 0.7}}px);{% endif %}
-      {% if block_settings.padding-inline-end > 0 %}--zoom-out-padding-inline-end: min(var(--padding-xs), {{ block_settings.padding-inline-end | times: 0.7}}px);{% endif %}
-      {% if block_settings.padding-block-start > 0 %}--zoom-out-padding-block-start: min(var(--padding-xs), {{ block_settings.padding-block-start | times: 0.7}}px);{% endif %}
-      {% if block_settings.padding-block-end > 0 %}--zoom-out-padding-block-end: min(var(--padding-xs), {{ block_settings.padding-block-end | times: 0.7}}px);{% endif %}
+      --pc-gap: {{ product_card_gap_value }}px;
+      --pc-radius: {{ block_settings.border_radius | default: 0 }}px;
+      {% if block_settings.border != 'none' %}--pc-border: {{ block_settings.border_width | default: 1 }}px solid rgb(var(--color-border-rgb) / {{ block_settings.border_opacity | default: 100 | divided_by: 100.0 }});{% else %}--pc-border: none;{% endif %}
+      padding-block-start: {{ block_settings.padding-block-start | default: 0 }}px;
+      padding-block-end: {{ block_settings.padding-block-end | default: 0 }}px;
+      padding-inline-start: {{ block_settings.padding-inline-start | default: 0 }}px;
+      padding-inline-end: {{ block_settings.padding-inline-end | default: 0 }}px;
     "
   >
-    {{ children }}
+    <div class="product-card-figma__media-wrapper">
+      <a
+        id="{{ product_card_id | md5 }}"
+        {% unless onboarding %}href="{{ product_url }}"{% endunless %}
+        class="product-card-figma__media-link"
+        aria-label="{{ product.title | default: 'Product' | escape }}"
+      >
+        {% if onboarding %}
+          <div class="product-card-figma__media product-card-figma__media--placeholder">
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {% else %}
+          <div class="product-card-figma__media">
+            {% if featured_image %}
+              {{ featured_image | image_url: width: 600 | image_tag:
+                  class: 'product-card-figma__image product-card-figma__image--primary',
+                  loading: 'lazy',
+                  widths: '200,300,400,500,600',
+                  sizes: '(min-width: 990px) 25vw, (min-width: 750px) 33vw, 80vw',
+                  alt: featured_image.alt | default: product.title
+              }}
+            {% endif %}
+            {% if hover_image %}
+              {{ hover_image | image_url: width: 600 | image_tag:
+                  class: 'product-card-figma__image product-card-figma__image--secondary',
+                  loading: 'lazy',
+                  widths: '200,300,400,500,600',
+                  sizes: '(min-width: 990px) 25vw, (min-width: 750px) 33vw, 80vw',
+                  alt: ''
+              }}
+            {% endif %}
+          </div>
+        {% endif %}
+      </a>
+      {% if card_badge != blank %}
+        <span class="product-card-figma__badge">{{ card_badge }}</span>
+      {% endif %}
+    </div>
+
+    <div class="product-card-figma__content">
+      {% if rating != blank %}
+        <div class="product-card-figma__rating">
+          <span class="product-card-figma__stars" aria-label="Rated {{ rating_value }} out of {{ scale_max }}">
+            {% for i in (1..scale_max) %}
+              {% if i <= rating_filled %}
+                <svg class="product-card-figma__star product-card-figma__star--filled" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path d="M8 1l1.91 4.34 4.59.4-3.5 3.07 1.07 4.69L8 11.27l-4.07 2.23 1.07-4.69-3.5-3.07 4.59-.4L8 1z"/>
+                </svg>
+              {% else %}
+                {% assign next_filled_index = rating_filled | plus: 1 %}
+                {% if rating_has_half and i == next_filled_index %}
+                  <svg class="product-card-figma__star product-card-figma__star--half" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                    <defs>
+                      <linearGradient id="pcf-half-{{ product.id }}-{{ i }}">
+                        <stop offset="50%" stop-color="currentColor"/>
+                        <stop offset="50%" stop-color="rgba(0,0,0,0.15)"/>
+                      </linearGradient>
+                    </defs>
+                    <path fill="url(#pcf-half-{{ product.id }}-{{ i }})" d="M8 1l1.91 4.34 4.59.4-3.5 3.07 1.07 4.69L8 11.27l-4.07 2.23 1.07-4.69-3.5-3.07 4.59-.4L8 1z"/>
+                  </svg>
+                {% else %}
+                  <svg class="product-card-figma__star product-card-figma__star--empty" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                    <path d="M8 1l1.91 4.34 4.59.4-3.5 3.07 1.07 4.69L8 11.27l-4.07 2.23 1.07-4.69-3.5-3.07 4.59-.4L8 1z"/>
+                  </svg>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </span>
+          <span class="product-card-figma__rating-number">{{ rating_value }}</span>
+          {% if rating_count != blank and rating_count != 0 %}
+            <span class="product-card-figma__rating-count">({{ rating_count }})</span>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <a class="product-card-figma__title-link" {% unless onboarding %}href="{{ product_url }}"{% endunless %}>
+        <h3 class="product-card-figma__title">
+          {% if onboarding %}{{ 'content.product_card_placeholder' | t }}{% else %}{{ product.title | escape }}{% endif %}
+        </h3>
+      </a>
+
+      {% if card_subtitle != blank %}
+        <p class="product-card-figma__subtitle">{{ card_subtitle | escape }}</p>
+      {% endif %}
+
+      <div class="product-card-figma__price-row">
+        <span class="product-card-figma__price">
+          {% if onboarding %}$0.00{% else %}{{ product.price | money }}{% endif %}
+        </span>
+        {% if product.compare_at_price > product.price %}
+          <s class="product-card-figma__compare">{{ product.compare_at_price | money }}</s>
+          {% if discount_pct > 0 %}
+            <span class="product-card-figma__discount-badge">{{ discount_pct }}% off</span>
+          {% endif %}
+        {% endif %}
+      </div>
+
+      {% if feature_highlight != blank %}
+        <details class="product-card-figma__feature-details">
+          <summary class="product-card-figma__feature-summary">
+            <span class="product-card-figma__feature-text">{{ feature_highlight | escape | truncate: 40 }}</span>
+            <svg class="product-card-figma__feature-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+              <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="product-card-figma__feature-content">
+            <p>{{ feature_highlight | escape }}</p>
+          </div>
+        </details>
+      {% endif %}
+
+      <div class="product-card-figma__cta">
+        {% if onboarding %}
+          <button type="button" class="product-card-figma__add-button" disabled>
+            <svg class="product-card-figma__plus" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false">
+              <path d="M2.75 7H11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M7 2.75V11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span class="product-card-figma__add-label">Add to Cart</span>
+          </button>
+          <span class="product-card-figma__learn-more">Learn More</span>
+        {% else %}
+          <form method="post" action="{{ routes.cart_add_url }}" class="product-card-figma__form" enctype="multipart/form-data">
+            <input type="hidden" name="form_type" value="product">
+            <input type="hidden" name="utf8" value="✓">
+            <input type="hidden" name="id" value="{{ variant_to_link.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button
+              type="submit"
+              class="product-card-figma__add-button"
+              {% if product.available == false %}disabled{% endif %}
+            >
+              <svg class="product-card-figma__plus" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false">
+                <path d="M2.75 7H11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M7 2.75V11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <span class="product-card-figma__add-label">
+                {% if product.available %}Add to Cart{% else %}Sold out{% endif %}
+              </span>
+            </button>
+          </form>
+          <a href="{{ product_url }}" class="product-card-figma__learn-more">Learn More</a>
+        {% endif %}
+      </div>
+
+      {% if feature_icons != blank %}
+        <ul class="product-card-figma__features">
+          {% assign icons = feature_icons | split: ',' %}
+          {% for icon in icons %}
+            {% if icon == 'bluetooth' %}
+              <li class="product-card-figma__feature-icon" aria-label="Bluetooth">
+                <img src="{{ 'bluetooth.svg' | asset_url }}" alt="" width="24" height="24" loading="lazy">
+              </li>
+            {% elsif icon == 'heated' %}
+              <li class="product-card-figma__feature-icon" aria-label="Heated">
+                <img src="{{ 'heated.svg' | asset_url }}" alt="" width="24" height="24" loading="lazy">
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
   </div>
 </product-card>
 
 {% stylesheet %}
-  .product-card__placeholder-image svg {
+  .product-card-figma {
+    display: block;
+    width: 100%;
+  }
+
+  .product-card-figma__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: var(--pc-border, none);
+    border-radius: var(--pc-radius, 0);
     height: 100%;
   }
 
+  .product-card-figma__media-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 303 / 308;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #F2F2F2;
+  }
+
+  .product-card-figma__media-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .product-card-figma__media {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .product-card-figma__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+  }
+
+  .product-card-figma__image--secondary {
+    opacity: 0;
+  }
+
+  .product-card-figma__media--placeholder svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (hover: hover) {
+    .product-card-figma__media-wrapper:hover .product-card-figma__image--primary {
+      opacity: 0;
+    }
+
+    .product-card-figma__media-wrapper:hover .product-card-figma__image--secondary {
+      opacity: 1;
+    }
+  }
+
+  .product-card-figma__badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding: 0 10px;
+    background: #DCE4F0;
+    color: #005695;
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1;
+    pointer-events: none;
+    text-transform: capitalize;
+    white-space: nowrap;
+  }
+
+  .product-card-figma__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--pc-gap, 12px);
+  }
+
+  .product-card-figma__rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .product-card-figma__stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    color: #FFB546;
+  }
+
+  .product-card-figma__star {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+
+  .product-card-figma__star--empty {
+    color: rgb(var(--color-foreground-rgb) / 0.2);
+  }
+
+  .product-card-figma__rating-number {
+    font-family: var(--font-body--family);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--color-foreground);
+  }
+
+  .product-card-figma__rating-count {
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.4;
+    color: rgb(var(--color-foreground-rgb) / 0.7);
+  }
+
+  .product-card-figma__title-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .product-card-figma__title {
+    margin: 0;
+    font-family: var(--font-body--family);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--color-foreground-heading);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-card-figma__subtitle {
+    margin: 0;
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.4;
+    color: rgb(var(--color-foreground-rgb) / 0.75);
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-card-figma__price-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .product-card-figma__price {
+    font-family: var(--font-body--family);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--color-foreground);
+  }
+
+  .product-card-figma__compare {
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;
+    color: rgb(var(--color-foreground-rgb) / 0.5);
+    text-decoration: line-through;
+  }
+
+  .product-card-figma__discount-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 16px;
+    padding: 0 6px;
+    background: #FCE7E7;
+    color: #C72121;
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  .product-card-figma__feature-details {
+    border-top: 1px solid rgb(var(--color-foreground-rgb) / 0.1);
+    padding-top: 6px;
+  }
+
+  .product-card-figma__feature-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--color-foreground);
+  }
+
+  .product-card-figma__feature-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .product-card-figma__feature-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .product-card-figma__feature-chevron {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+    color: #C9CAD4;
+  }
+
+  .product-card-figma__feature-details[open] .product-card-figma__feature-chevron {
+    transform: rotate(180deg);
+  }
+
+  .product-card-figma__feature-content {
+    padding-block: 8px 0;
+    font-family: var(--font-body--family);
+    font-size: 12px;
+    line-height: 1.4;
+    color: rgb(var(--color-foreground-rgb) / 0.8);
+  }
+
+  .product-card-figma__feature-content p {
+    margin: 0;
+  }
+
+  .product-card-figma__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .product-card-figma__form {
+    margin: 0;
+    width: 100%;
+  }
+
+  .product-card-figma__add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 32px;
+    padding: 0 16px;
+    border: 1px solid var(--color-foreground);
+    background: transparent;
+    color: var(--color-foreground);
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .product-card-figma__add-button:hover:not([disabled]) {
+    background: var(--color-foreground);
+    color: var(--color-background);
+  }
+
+  .product-card-figma__add-button[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .product-card-figma__plus {
+    flex-shrink: 0;
+  }
+
+  .product-card-figma__learn-more {
+    display: inline-block;
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--color-foreground);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .product-card-figma__features {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .product-card-figma__feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-card-figma__feature-icon img {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
   @media screen and (max-width: 749px) {
-    .product-card slideshow-arrows .slideshow-control {
-      display: none;
+    .product-card-figma__inner {
+      gap: 12px;
+    }
+
+    .product-card-figma__title {
+      font-size: 15px;
+    }
+
+    .product-card-figma__add-button {
+      font-size: 13px;
     }
   }
 {% endstylesheet %}
