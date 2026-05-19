@@ -216,7 +216,10 @@
   }
 
   .tabbed-product-carousel__tabs-wrapper {
+    display: flex;
+    justify-content: center;
     width: 100%;
+    border-bottom: 1px solid #C9CAD4;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -230,11 +233,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    gap: 32px;
-    width: 100%;
-    border-bottom: 1px solid #C9CAD4;
-    margin: 0;
+    justify-content: center;
+    gap: 48px;
+    width: fit-content;
+    margin: 0 auto;
   }
 
   .tabbed-product-carousel__tab {
