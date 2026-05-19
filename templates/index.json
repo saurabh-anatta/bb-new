@@ -670,7 +670,7 @@
         "media_height": "auto",
         "section_width": "page-width",
         "extend_media": false,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
         "padding-block-start": 0,
         "padding-block-end": 0
       },
@@ -679,7 +679,7 @@
           "type": "_media-without-appearance",
           "static": true,
           "settings": {
-            "image": "shopify://shop_images/frame-1597880400-desktop-I6631051663978.png",
+            "image": "shopify://shop_images/logos-mobile-1-mobile-I869125299669252.png",
             "image_position": "cover"
           }
         },
@@ -689,17 +689,17 @@
           "settings": {
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 24
+            "gap": 12
           },
           "blocks": {
             "heading": {
               "type": "text",
               "settings": {
-                "text": "<p>Trusted by industry leaders</p>",
+                "text": "<p>Unstoppable Power Solutions. Backed by An American Brand.</p>",
                 "type_preset": "custom",
                 "font": "var(--font-heading--family)",
-                "font_size": "2rem",
-                "line_height": "normal",
+                "font_size": "1.5rem",
+                "line_height": "body-normal",
                 "letter_spacing": "tight",
                 "case": "none",
                 "width": "100%",
@@ -709,79 +709,19 @@
             "description": {
               "type": "text",
               "settings": {
-                "text": "<p>A proud American Lithium battery brand, relied on by OEMs and pros across RV, marine, and off-grid power markets.</p>",
+                "text": "<p>Assembled and tested in the U.S. with a focus on quality, safety and long-term reliability</p>",
                 "type_preset": "custom",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
-                "line_height": "normal",
+                "line_height": "heading-loose",
                 "letter_spacing": "normal",
                 "case": "none",
                 "width": "100%",
-                "color": "#4F5055"
+                "color": "var(--color-foreground-heading)"
               }
-            },
-            "pills_group": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "gap": 12,
-                "width": "fill",
-                "height": "fit"
-              },
-              "blocks": {
-                "pill_rv": {
-                  "type": "button",
-                  "settings": {
-                    "label": "RV",
-                    "style_class": "button",
-                    "width": "fit-content"
-                  }
-                },
-                "pill_trucking": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Trucking",
-                    "style_class": "button",
-                    "width": "fit-content"
-                  }
-                },
-                "pill_oil_gas": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Oil & Gas",
-                    "style_class": "button",
-                    "width": "fit-content"
-                  }
-                },
-                "pill_marine": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Marine",
-                    "style_class": "button",
-                    "width": "fit-content"
-                  }
-                },
-                "pill_offgrid": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Off-Grid Residential",
-                    "style_class": "button",
-                    "width": "fit-content"
-                  }
-                },
-                "pill_industrial": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Industrial",
-                    "style_class": "button",
-                    "width": "fit-content"
-                  }
-                }
-              },
-              "block_order": ["pill_rv", "pill_trucking", "pill_oil_gas", "pill_marine", "pill_offgrid", "pill_industrial"]
             }
           },
-          "block_order": ["heading", "description", "pills_group"]
+          "block_order": ["heading", "description"]
         }
       }
     },
