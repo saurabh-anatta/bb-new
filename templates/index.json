@@ -1308,7 +1308,7 @@
     "proud-american-badge": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<div style=\"display:flex;justify-content:center;align-items:center;\"><picture><source media=\"(max-width:749px)\" srcset=\"{{ 'frame-48098271-2.svg' | asset_url }}\" type=\"image/svg+xml\"><img src=\"{{ 'frame-48098271.svg' | asset_url }}\" alt=\"Proud American Company\" width=\"264\" height=\"40\" loading=\"eager\" style=\"display:block;\"></picture></div>",
+        "custom_liquid": "<style>.proud-american-badge{display:flex;justify-content:center;align-items:center;}@media screen and (min-width:750px){.proud-american-badge{justify-content:flex-end;}}</style><div class=\"proud-american-badge\"><picture><source media=\"(max-width:749px)\" srcset=\"{{ 'frame-48098271-2.svg' | asset_url }}\" type=\"image/svg+xml\"><img src=\"{{ 'frame-48098271.svg' | asset_url }}\" alt=\"Proud American Company\" width=\"264\" height=\"40\" loading=\"eager\" style=\"display:block;\"></picture></div>",
         "color_scheme": "scheme-1",
         "section_width": "page-width",
         "padding-block-start": 16,
