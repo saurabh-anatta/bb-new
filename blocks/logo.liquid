@@ -5,6 +5,10 @@
   if block_settings.inverse and settings.logo_inverse
     assign image = settings.logo_inverse
   endif
+
+  if block_settings.custom_image != blank
+    assign image = block_settings.custom_image
+  endif
 %}
 
 {%- if image -%}
@@ -104,11 +108,17 @@
   "tag": null,
   "settings": [
     {
+      "type": "image_picker",
+      "id": "custom_image",
+      "label": "t:settings.custom_logo_image",
+      "info": "t:settings.custom_logo_image_info"
+    },
+    {
       "type": "checkbox",
       "label": "t:settings.use_inverse_logo",
       "id": "inverse",
       "default": false,
-      "visible_if": "{{ settings.logo_inverse }}"
+      "visible_if": "{{ settings.logo_inverse and block.settings.custom_image == blank }}"
     },
     {
       "type": "select",

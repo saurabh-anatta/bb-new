@@ -770,6 +770,8 @@
     "add_to_cart_animation": "Add to cart",
     "always_stack_buttons": "Always stack buttons",
     "aspect_ratio": "Aspect ratio",
+    "custom_logo_image": "Custom logo image",
+    "custom_logo_image_info": "Overrides the default theme logo for this block instance. Useful for displaying a different logo in the footer.",
     "custom_mobile_media": "Show different media on mobile",
     "stack_media_on_mobile": "Stack media",
     "auto_rotate_announcements": "Auto-rotate announcements",
