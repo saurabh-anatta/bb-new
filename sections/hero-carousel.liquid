@@ -119,73 +119,73 @@
       <hero-carousel-controls class="hero-carousel__controls-wrapper">
         <div class="hero-carousel__thumbnails">
           {% for block in section.blocks %}
-            <button
-              type="button"
-              class="hero-carousel__thumbnail{% if forloop.first %} is-active{% endif %}"
-              aria-label="{{ 'accessibility.slide_status' | t: index: forloop.index, length: forloop.length }}"
-              on:click="/select/{{ forloop.index0 }}"
-              ref="dots[]"
-              {% if forloop.first %}
-                aria-selected="true"
-              {% else %}
-                aria-selected="false"
-              {% endif %}
-            >
-              <div class="hero-carousel__thumbnail-image-wrap">
-                {% if block.settings.thumbnail != blank %}
-                  {{
-                    block.settings.thumbnail
-                    | image_url: width: 222
-                    | image_tag:
-                      loading: 'eager',
-                      widths: '80,111,160,222',
-                      sizes: '(min-width: 750px) 111px, 80px',
-                      class: 'hero-carousel__thumbnail-image',
-                      alt: block.settings.heading
-                  }}
+            <div class="hero-carousel__thumbnail-slot">
+              <button
+                type="button"
+                class="hero-carousel__thumbnail{% if forloop.first %} is-active{% endif %}"
+                aria-label="{{ 'accessibility.slide_status' | t: index: forloop.index, length: forloop.length }}"
+                on:click="/select/{{ forloop.index0 }}"
+                ref="dots[]"
+                {% if forloop.first %}
+                  aria-selected="true"
                 {% else %}
-                  <div class="hero-carousel__thumbnail-placeholder">
-                    {{ 'lifestyle-1' | placeholder_svg_tag }}
-                  </div>
+                  aria-selected="false"
                 {% endif %}
-                <div class="hero-carousel__thumbnail-overlay"></div>
-              </div>
-              <div class="hero-carousel__progress-track">
-                <div class="hero-carousel__progress-fill"></div>
-              </div>
-            </button>
-          {% endfor %}
+              >
+                <div class="hero-carousel__thumbnail-image-wrap">
+                  {% if block.settings.thumbnail != blank %}
+                    {{
+                      block.settings.thumbnail
+                      | image_url: width: 222
+                      | image_tag:
+                        loading: 'eager',
+                        widths: '80,111,160,222',
+                        sizes: '(min-width: 750px) 111px, 80px',
+                        class: 'hero-carousel__thumbnail-image',
+                        alt: block.settings.heading
+                    }}
+                  {% else %}
+                    <div class="hero-carousel__thumbnail-placeholder">
+                      {{ 'lifestyle-1' | placeholder_svg_tag }}
+                    </div>
+                  {% endif %}
+                  <div class="hero-carousel__thumbnail-overlay"></div>
+                </div>
+                <div class="hero-carousel__progress-track">
+                  <div class="hero-carousel__progress-fill"></div>
+                </div>
+              </button>
 
-          {% if section.settings.autoplay %}
-            <div class="hero-carousel__pause-control">
-              <button
-                type="button"
-                class="hero-carousel__pause-btn"
-                aria-label="{{ 'accessibility.slideshow_pause' | t }}"
-                on:click="/pause"
-              >
-                <span class="hero-carousel__pause-icon hero-carousel__pause-icon--desktop">
-                  {{ 'btn-pause-1-2.svg' | inline_asset_content }}
-                </span>
-                <span class="hero-carousel__pause-icon hero-carousel__pause-icon--mobile">
-                  {{ 'btn-pause-1.svg' | inline_asset_content }}
-                </span>
-              </button>
-              <button
-                type="button"
-                class="hero-carousel__play-btn"
-                aria-label="{{ 'accessibility.slideshow_play' | t }}"
-                on:click="/play"
-              >
-                <span class="hero-carousel__pause-icon hero-carousel__pause-icon--desktop">
-                  {{ 'btn-pause-1-2.svg' | inline_asset_content }}
-                </span>
-                <span class="hero-carousel__pause-icon hero-carousel__pause-icon--mobile">
-                  {{ 'btn-pause-1.svg' | inline_asset_content }}
-                </span>
-              </button>
+              {% if section.settings.autoplay %}
+                <button
+                  type="button"
+                  class="hero-carousel__pause-btn"
+                  aria-label="{{ 'accessibility.slideshow_pause' | t }}"
+                  on:click="/pause"
+                >
+                  <span class="hero-carousel__pause-icon hero-carousel__pause-icon--desktop">
+                    {{ 'btn-pause-1-2.svg' | inline_asset_content }}
+                  </span>
+                  <span class="hero-carousel__pause-icon hero-carousel__pause-icon--mobile">
+                    {{ 'btn-pause-1.svg' | inline_asset_content }}
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  class="hero-carousel__play-btn"
+                  aria-label="{{ 'accessibility.slideshow_play' | t }}"
+                  on:click="/play"
+                >
+                  <span class="hero-carousel__pause-icon hero-carousel__pause-icon--desktop">
+                    {{ 'btn-play-1-2.svg' | inline_asset_content }}
+                  </span>
+                  <span class="hero-carousel__pause-icon hero-carousel__pause-icon--mobile">
+                    {{ 'btn-play-1.svg' | inline_asset_content }}
+                  </span>
+                </button>
+              {% endif %}
             </div>
-          {% endif %}
+          {% endfor %}
         </div>
       </hero-carousel-controls>
     {% endif %}
@@ -357,6 +357,14 @@
     padding: 0 var(--padding-sm);
   }
 
+  .hero-carousel__thumbnail-slot {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-shrink: 0;
+  }
+
   .hero-carousel__thumbnail {
     display: flex;
     flex-direction: column;
@@ -440,17 +448,14 @@
     }
   }
 
-  /* Pause / Play controls */
-  .hero-carousel__pause-control {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    margin-inline-start: var(--gap-2xs);
-  }
-
+  /* Pause / Play controls — overlay on the active thumbnail */
   .hero-carousel__pause-btn,
   .hero-carousel__play-btn {
-    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 24px;
+    transform: translate(-50%, -50%);
+    display: none;
     align-items: center;
     justify-content: center;
     background: none;
@@ -459,11 +464,16 @@
     margin: 0;
     cursor: pointer;
     line-height: 0;
+    width: 20px;
+    height: 20px;
+    z-index: 2;
   }
 
   .hero-carousel__pause-btn svg,
   .hero-carousel__play-btn svg {
     display: block;
+    width: 100%;
+    height: 100%;
   }
 
   .hero-carousel__pause-icon--desktop {
@@ -474,13 +484,18 @@
     display: inline-flex;
   }
 
-  /* Show pause, hide play by default */
-  slideshow-component:not([paused]) .hero-carousel__play-btn {
+  /* Show pause icon on the active thumbnail by default (animation running) */
+  .hero-carousel__thumbnail-slot:has(.hero-carousel__thumbnail.is-active) .hero-carousel__pause-btn {
+    display: inline-flex;
+  }
+
+  /* When slideshow is paused, swap pause for play on the active thumbnail */
+  slideshow-component[paused] .hero-carousel__thumbnail-slot:has(.hero-carousel__thumbnail.is-active) .hero-carousel__pause-btn {
     display: none;
   }
 
-  slideshow-component[paused] .hero-carousel__pause-btn {
-    display: none;
+  slideshow-component[paused] .hero-carousel__thumbnail-slot:has(.hero-carousel__thumbnail.is-active) .hero-carousel__play-btn {
+    display: inline-flex;
   }
 
   /* Desktop styles */
@@ -529,10 +544,11 @@
     /* Controls overlap */
     .hero-carousel__controls-wrapper {
       margin-top: -32px;
+      justify-content: flex-start;
     }
 
     .hero-carousel__thumbnails {
-      padding: 0 var(--padding-2xl);
+      padding: 0 var(--padding-6xl);
     }
 
     .hero-carousel__thumbnail {
@@ -542,6 +558,13 @@
     .hero-carousel__thumbnail-image-wrap {
       width: 111px;
       height: 65px;
+    }
+
+    .hero-carousel__pause-btn,
+    .hero-carousel__play-btn {
+      width: 24px;
+      height: 24px;
+      top: 32.5px;
     }
 
     .hero-carousel__pause-icon--desktop {
