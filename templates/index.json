@@ -66,23 +66,25 @@
         "padding-block-end": 0
       }
     },
+    "proud-american-badge": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>.proud-american-badge{display:flex;justify-content:center;align-items:center;}@media screen and (min-width:750px){.proud-american-badge{justify-content:flex-end;}}</style><div class=\"proud-american-badge\"><picture><source media=\"(max-width:749px)\" srcset=\"{{ 'frame-48098271-2.svg' | asset_url }}\" type=\"image/svg+xml\"><img src=\"{{ 'frame-48098271.svg' | asset_url }}\" alt=\"Proud American Company\" width=\"264\" height=\"40\" loading=\"eager\" style=\"display:block;\"></picture></div>",
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
+    },
     "image-title-cards": {
       "type": "section",
-      "settings": {
-        "content_direction": "column",
-        "horizontal_alignment_flex_direction_column": "center",
-        "gap": 40,
-        "section_width": "page-width",
-        "color_scheme": "scheme-1",
-        "padding-block-start": 64,
-        "padding-block-end": 64
-      },
       "blocks": {
         "heading": {
           "type": "text",
           "settings": {
             "text": "<p>Explore Power Solutions</p>",
             "width": "100%",
+            "max_width": "normal",
             "alignment": "center",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
@@ -91,8 +93,16 @@
             "letter_spacing": "tight",
             "case": "none",
             "wrap": "pretty",
-            "color": "var(--color-foreground-heading)"
-          }
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "description": {
           "type": "text",
@@ -108,8 +118,16 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "color": "var(--color-foreground)"
-          }
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "cards_row": {
           "type": "group",
@@ -118,611 +136,669 @@
             "vertical_on_mobile": true,
             "horizontal_alignment": "center",
             "vertical_alignment": "flex-start",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
             "gap": 32,
-            "width": "fill"
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {
             "card_1": {
               "type": "group",
               "settings": {
                 "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
                 "gap": 12,
                 "width": "fill",
-                "height": "fit"
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
                 "card_1_image": {
                   "type": "image",
                   "settings": {
                     "image": "shopify://shop_images/rectangle-mobile-I8631040986310369.png",
+                    "link": "",
                     "image_ratio": "square",
                     "width": "fill",
-                    "border_radius": 12
-                  }
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 12,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "card_1_title": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Life PO4 Batteries</p>",
                     "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-heading--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
-                    "color": "var(--color-foreground-heading)"
-                  }
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "card_1_desc": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Life PO4 batteries built for reliable power</p>",
                     "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
                     "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
-                    "color": "var(--color-foreground)"
-                  }
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["card_1_image", "card_1_title", "card_1_desc"]
+              "block_order": [
+                "card_1_image",
+                "card_1_title",
+                "card_1_desc"
+              ]
             },
             "card_2": {
               "type": "group",
               "settings": {
                 "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
                 "gap": 12,
                 "width": "fill",
-                "height": "fit"
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
                 "card_2_image": {
                   "type": "image",
                   "settings": {
                     "image": "shopify://shop_images/rectangle-mobile-I8631040986310378.png",
+                    "link": "",
                     "image_ratio": "square",
                     "width": "fill",
-                    "border_radius": 12
-                  }
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 12,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "card_2_title": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Charging & Power</p>",
                     "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-heading--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
-                    "color": "var(--color-foreground-heading)"
-                  }
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "card_2_desc": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Charging and power conversion components</p>",
                     "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
                     "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
-                    "color": "var(--color-foreground)"
-                  }
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["card_2_image", "card_2_title", "card_2_desc"]
+              "block_order": [
+                "card_2_image",
+                "card_2_title",
+                "card_2_desc"
+              ]
             },
             "card_3": {
               "type": "group",
               "settings": {
                 "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
                 "gap": 12,
                 "width": "fill",
-                "height": "fit"
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
                 "card_3_image": {
                   "type": "image",
                   "settings": {
                     "image": "shopify://shop_images/rectangle-mobile-I8631040986310387.jpg",
+                    "link": "",
                     "image_ratio": "square",
                     "width": "fill",
-                    "border_radius": 12
-                  }
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 12,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "card_3_title": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Solar Panels</p>",
                     "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-heading--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
-                    "color": "var(--color-foreground-heading)"
-                  }
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "card_3_desc": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Solar components for off-grid power systems</p>",
                     "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
                     "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
-                    "color": "var(--color-foreground)"
-                  }
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["card_3_image", "card_3_title", "card_3_desc"]
+              "block_order": [
+                "card_3_image",
+                "card_3_title",
+                "card_3_desc"
+              ]
             },
             "card_4": {
               "type": "group",
               "settings": {
                 "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
                 "gap": 12,
                 "width": "fill",
-                "height": "fit"
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
                 "card_4_image": {
                   "type": "image",
                   "settings": {
                     "image": "shopify://shop_images/rectangle-mobile-I8631040986310396.jpg",
+                    "link": "",
                     "image_ratio": "square",
                     "width": "fill",
-                    "border_radius": 12
-                  }
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 12,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "card_4_title": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Monitoring & Control</p>",
                     "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-heading--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
-                    "color": "var(--color-foreground-heading)"
-                  }
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "card_4_desc": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Smart system monitoring and control</p>",
                     "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
                     "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
-                    "color": "var(--color-foreground)"
-                  }
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["card_4_image", "card_4_title", "card_4_desc"]
+              "block_order": [
+                "card_4_image",
+                "card_4_title",
+                "card_4_desc"
+              ]
             },
             "card_5": {
               "type": "group",
               "settings": {
                 "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
                 "gap": 12,
                 "width": "fill",
-                "height": "fit"
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
                 "card_5_image": {
                   "type": "image",
                   "settings": {
                     "image": "shopify://shop_images/rectangle-mobile-I8631040986310405.png",
+                    "link": "",
                     "image_ratio": "square",
                     "width": "fill",
-                    "border_radius": 12
-                  }
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 12,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "card_5_title": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Complete Systems</p>",
                     "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-heading--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
-                    "color": "var(--color-foreground-heading)"
-                  }
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "card_5_desc": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Integrated power systems designed to work together.</p>",
                     "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
                     "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
-                    "color": "var(--color-foreground)"
-                  }
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["card_5_image", "card_5_title", "card_5_desc"]
+              "block_order": [
+                "card_5_image",
+                "card_5_title",
+                "card_5_desc"
+              ]
             }
           },
-          "block_order": ["card_1", "card_2", "card_3", "card_4", "card_5"]
+          "block_order": [
+            "card_1",
+            "card_2",
+            "card_3",
+            "card_4",
+            "card_5"
+          ]
         }
       },
-      "block_order": ["heading", "description", "cards_row"]
-    },
-    "left-image-text": {
-      "type": "media-with-content",
+      "block_order": [
+        "heading",
+        "description",
+        "cards_row"
+      ],
       "settings": {
-        "media_position": "left",
-        "media_width": "medium",
-        "media_height": "auto",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 40,
         "section_width": "page-width",
-        "extend_media": false,
+        "section_height": "",
+        "section_height_custom": 50,
         "color_scheme": "scheme-1",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
         "padding-block-start": 64,
         "padding-block-end": 64
-      },
-      "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
-          "settings": {
-            "image": "shopify://shop_images/image-13-mobile-I8681200086811566.png",
-            "image_position": "cover"
-          }
-        },
-        "content": {
-          "type": "_content-without-appearance",
-          "static": true,
-          "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 24
-          },
-          "blocks": {
-            "heading": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Battle Born gives you the power you need to get out there.</p>",
-                "type_preset": "custom",
-                "font": "var(--font-heading--family)",
-                "font_size": "2rem",
-                "line_height": "normal",
-                "letter_spacing": "tight",
-                "case": "none",
-                "width": "100%",
-                "color": "var(--color-foreground-heading)"
-              }
-            },
-            "feature_1": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_alignment": "flex-start",
-                "gap": 10,
-                "width": "fill",
-                "height": "fit"
-              },
-              "blocks": {
-                "icon_1": {
-                  "type": "icon",
-                  "settings": {
-                    "icon": "check_circle",
-                    "width": 16
-                  }
-                },
-                "text_col_1": {
-                  "type": "group",
-                  "settings": {
-                    "content_direction": "column",
-                    "gap": 4,
-                    "width": "fill",
-                    "height": "fit"
-                  },
-                  "blocks": {
-                    "title_1": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>A decade proven</p>",
-                        "type_preset": "custom",
-                        "font": "var(--font-heading--family)",
-                        "font_size": "0.75rem",
-                        "line_height": "loose",
-                        "letter_spacing": "normal",
-                        "case": "uppercase",
-                        "width": "100%",
-                        "color": "var(--color-foreground-heading)"
-                      }
-                    },
-                    "desc_1": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Reliable LiFePO4 performance and long life backed by experience.</p>",
-                        "type_preset": "custom",
-                        "font": "var(--font-body--family)",
-                        "font_size": "0.875rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "width": "100%",
-                        "color": "#4F5055"
-                      }
-                    }
-                  },
-                  "block_order": ["title_1", "desc_1"]
-                }
-              },
-              "block_order": ["icon_1", "text_col_1"]
-            },
-            "feature_2": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_alignment": "flex-start",
-                "gap": 10,
-                "width": "fill",
-                "height": "fit"
-              },
-              "blocks": {
-                "icon_2": {
-                  "type": "icon",
-                  "settings": {
-                    "icon": "check_circle",
-                    "width": 16
-                  }
-                },
-                "text_col_2": {
-                  "type": "group",
-                  "settings": {
-                    "content_direction": "column",
-                    "gap": 4,
-                    "width": "fill",
-                    "height": "fit"
-                  },
-                  "blocks": {
-                    "title_2": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>safety by design</p>",
-                        "type_preset": "custom",
-                        "font": "var(--font-heading--family)",
-                        "font_size": "0.75rem",
-                        "line_height": "loose",
-                        "letter_spacing": "normal",
-                        "case": "uppercase",
-                        "width": "100%",
-                        "color": "var(--color-foreground-heading)"
-                      }
-                    },
-                    "desc_2": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Built-in BMS &amp; stable chemistry for safer, dependable power every time.</p>",
-                        "type_preset": "custom",
-                        "font": "var(--font-body--family)",
-                        "font_size": "0.875rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "width": "100%",
-                        "color": "#4F5055"
-                      }
-                    }
-                  },
-                  "block_order": ["title_2", "desc_2"]
-                }
-              },
-              "block_order": ["icon_2", "text_col_2"]
-            },
-            "feature_3": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_alignment": "flex-start",
-                "gap": 10,
-                "width": "fill",
-                "height": "fit"
-              },
-              "blocks": {
-                "icon_3": {
-                  "type": "icon",
-                  "settings": {
-                    "icon": "check_circle",
-                    "width": 16
-                  }
-                },
-                "text_col_3": {
-                  "type": "group",
-                  "settings": {
-                    "content_direction": "column",
-                    "gap": 4,
-                    "width": "fill",
-                    "height": "fit"
-                  },
-                  "blocks": {
-                    "title_3": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>proven at scale</p>",
-                        "type_preset": "custom",
-                        "font": "var(--font-heading--family)",
-                        "font_size": "0.75rem",
-                        "line_height": "loose",
-                        "letter_spacing": "normal",
-                        "case": "uppercase",
-                        "width": "100%",
-                        "color": "var(--color-foreground-heading)"
-                      }
-                    },
-                    "desc_3": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Trusted by adventurers worldwide for RV, marine and off-grid power.</p>",
-                        "type_preset": "custom",
-                        "font": "var(--font-body--family)",
-                        "font_size": "0.875rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "width": "100%",
-                        "color": "#4F5055"
-                      }
-                    }
-                  },
-                  "block_order": ["title_3", "desc_3"]
-                }
-              },
-              "block_order": ["icon_3", "text_col_3"]
-            },
-            "feature_4": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_alignment": "flex-start",
-                "gap": 10,
-                "width": "fill",
-                "height": "fit"
-              },
-              "blocks": {
-                "icon_4": {
-                  "type": "icon",
-                  "settings": {
-                    "icon": "check_circle",
-                    "width": 16
-                  }
-                },
-                "text_col_4": {
-                  "type": "group",
-                  "settings": {
-                    "content_direction": "column",
-                    "gap": 4,
-                    "width": "fill",
-                    "height": "fit"
-                  },
-                  "blocks": {
-                    "title_4": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>system engineering</p>",
-                        "type_preset": "custom",
-                        "font": "var(--font-heading--family)",
-                        "font_size": "0.75rem",
-                        "line_height": "loose",
-                        "letter_spacing": "normal",
-                        "case": "uppercase",
-                        "width": "100%",
-                        "color": "var(--color-foreground-heading)"
-                      }
-                    },
-                    "desc_4": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Intelligent power systems with smart monitoring &amp; efficient output.</p>",
-                        "type_preset": "custom",
-                        "font": "var(--font-body--family)",
-                        "font_size": "0.875rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "width": "100%",
-                        "color": "#4F5055"
-                      }
-                    }
-                  },
-                  "block_order": ["title_4", "desc_4"]
-                }
-              },
-              "block_order": ["icon_4", "text_col_4"]
-            }
-          },
-          "block_order": ["heading", "feature_1", "feature_2", "feature_3", "feature_4"]
-        }
-      }
-    },
-    "right-image-text": {
-      "type": "media-with-content",
-      "settings": {
-        "media_position": "right",
-        "media_width": "medium",
-        "media_height": "auto",
-        "section_width": "page-width",
-        "extend_media": false,
-        "color_scheme": "scheme-2",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      },
-      "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
-          "settings": {
-            "image": "shopify://shop_images/logos-mobile-1-mobile-I869125299669252.png",
-            "image_position": "cover"
-          }
-        },
-        "content": {
-          "type": "_content-without-appearance",
-          "static": true,
-          "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12
-          },
-          "blocks": {
-            "heading": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Unstoppable Power Solutions. Backed by An American Brand.</p>",
-                "type_preset": "custom",
-                "font": "var(--font-heading--family)",
-                "font_size": "1.5rem",
-                "line_height": "body-normal",
-                "letter_spacing": "tight",
-                "case": "none",
-                "width": "100%",
-                "color": "var(--color-foreground-heading)"
-              }
-            },
-            "description": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Assembled and tested in the U.S. with a focus on quality, safety and long-term reliability</p>",
-                "type_preset": "custom",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "heading-loose",
-                "letter_spacing": "normal",
-                "case": "none",
-                "width": "100%",
-                "color": "var(--color-foreground-heading)"
-              }
-            }
-          },
-          "block_order": ["heading", "description"]
-        }
       }
     },
     "tabbed-product-carousel": {
@@ -848,22 +924,686 @@
         "padding-block-end": 64
       }
     },
-    "testimonials": {
-      "type": "testimonials",
+    "left-image-text": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/image-13-mobile-I8681200086811566.png",
+            "link": "",
+            "video_loop": true,
+            "video_autoplay": false,
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 24
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Battle Born gives you the power you need to get out there.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "2rem",
+                "line_height": "normal",
+                "letter_spacing": "tight",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "feature_1": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 10,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "icon_1": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "check_circle",
+                    "width": 16,
+                    "link": "",
+                    "open_in_new_tab": false
+                  },
+                  "blocks": {}
+                },
+                "text_col_1": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 4,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "inherit_color_scheme": true,
+                    "color_scheme": "",
+                    "background_media": "none",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "placeholder": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "title_1": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>A decade proven</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "0.75rem",
+                        "line_height": "loose",
+                        "letter_spacing": "normal",
+                        "case": "uppercase",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground-heading)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "desc_1": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Reliable LiFePO4 performance and long life backed by experience.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "0.875rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "#4F5055",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "title_1",
+                    "desc_1"
+                  ]
+                }
+              },
+              "block_order": [
+                "icon_1",
+                "text_col_1"
+              ]
+            },
+            "feature_2": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 10,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "icon_2": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "check_circle",
+                    "width": 16,
+                    "link": "",
+                    "open_in_new_tab": false
+                  },
+                  "blocks": {}
+                },
+                "text_col_2": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 4,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "inherit_color_scheme": true,
+                    "color_scheme": "",
+                    "background_media": "none",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "placeholder": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "title_2": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>safety by design</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "0.75rem",
+                        "line_height": "loose",
+                        "letter_spacing": "normal",
+                        "case": "uppercase",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground-heading)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "desc_2": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Built-in BMS &amp; stable chemistry for safer, dependable power every time.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "0.875rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "#4F5055",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "title_2",
+                    "desc_2"
+                  ]
+                }
+              },
+              "block_order": [
+                "icon_2",
+                "text_col_2"
+              ]
+            },
+            "feature_3": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 10,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "icon_3": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "check_circle",
+                    "width": 16,
+                    "link": "",
+                    "open_in_new_tab": false
+                  },
+                  "blocks": {}
+                },
+                "text_col_3": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 4,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "inherit_color_scheme": true,
+                    "color_scheme": "",
+                    "background_media": "none",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "placeholder": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "title_3": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>proven at scale</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "0.75rem",
+                        "line_height": "loose",
+                        "letter_spacing": "normal",
+                        "case": "uppercase",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground-heading)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "desc_3": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Trusted by adventurers worldwide for RV, marine and off-grid power.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "0.875rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "#4F5055",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "title_3",
+                    "desc_3"
+                  ]
+                }
+              },
+              "block_order": [
+                "icon_3",
+                "text_col_3"
+              ]
+            },
+            "feature_4": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 10,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "icon_4": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "check_circle",
+                    "width": 16,
+                    "link": "",
+                    "open_in_new_tab": false
+                  },
+                  "blocks": {}
+                },
+                "text_col_4": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 4,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "inherit_color_scheme": true,
+                    "color_scheme": "",
+                    "background_media": "none",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "placeholder": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "title_4": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>system engineering</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "0.75rem",
+                        "line_height": "loose",
+                        "letter_spacing": "normal",
+                        "case": "uppercase",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground-heading)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "desc_4": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Intelligent power systems with smart monitoring &amp; efficient output.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "0.875rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "#4F5055",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "title_4",
+                    "desc_4"
+                  ]
+                }
+              },
+              "block_order": [
+                "icon_4",
+                "text_col_4"
+              ]
+            }
+          },
+          "block_order": [
+            "heading",
+            "feature_1",
+            "feature_2",
+            "feature_3",
+            "feature_4"
+          ]
+        }
+      },
       "settings": {
-        "heading": "400,000+ LiFePO4 Battery Packs In the Field",
-        "subheading": "Power Lights, fans, furnace, water pump, refrigerator, satellite Internet & everyday essentials reliably through the night",
-        "rating_value": "4.6",
-        "rating_label": "Stars",
-        "color_scheme": "scheme-2",
+        "media_position": "left",
+        "media_width": "medium",
+        "media_height": "auto",
+        "section_width": "page-width",
+        "extend_media": false,
+        "color_scheme": "scheme-1",
         "padding-block-start": 64,
         "padding-block-end": 64
-      },
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
       "blocks": {
         "tab_rv": {
           "type": "category_tab",
           "settings": {
             "label": "RV",
+            "url": "",
             "active": true
           }
         },
@@ -871,6 +1611,7 @@
           "type": "category_tab",
           "settings": {
             "label": "Marine",
+            "url": "",
             "active": false
           }
         },
@@ -878,6 +1619,7 @@
           "type": "category_tab",
           "settings": {
             "label": "Trucking",
+            "url": "",
             "active": false
           }
         },
@@ -885,6 +1627,7 @@
           "type": "category_tab",
           "settings": {
             "label": "Industrial",
+            "url": "",
             "active": false
           }
         },
@@ -892,6 +1635,7 @@
           "type": "category_tab",
           "settings": {
             "label": "vs. Lead-Acid",
+            "url": "",
             "active": false
           }
         },
@@ -899,6 +1643,7 @@
           "type": "category_tab",
           "settings": {
             "label": "American Company",
+            "url": "",
             "active": false
           }
         },
@@ -908,7 +1653,8 @@
             "quote": "A reliable RV power setup means thinking about your entire system",
             "reviewer_name": "Dr. Denis Phares",
             "show_verified": true,
-            "product_name": "100Ah 12V LiFePO4 Deep Cycle Battery"
+            "product_name": "100Ah 12V LiFePO4 Deep Cycle Battery",
+            "product_url": ""
           }
         },
         "review_2": {
@@ -917,7 +1663,8 @@
             "quote": "That's where my passion for coffee really took root. Once again, I found myself camping.",
             "reviewer_name": "Mt. McKinley",
             "show_verified": true,
-            "product_name": "100Ah 12V LiFePO4 Deep Cycle Battery"
+            "product_name": "100Ah 12V LiFePO4 Deep Cycle Battery",
+            "product_url": ""
           }
         },
         "review_3": {
@@ -926,7 +1673,8 @@
             "quote": "I've got over 70 and have never had one of these batteries go bad",
             "reviewer_name": "Rick Harrison",
             "show_verified": true,
-            "product_name": "100Ah 12V LiFePO4 Deep Cycle Battery"
+            "product_name": "100Ah 12V LiFePO4 Deep Cycle Battery",
+            "product_url": ""
           }
         },
         "review_4": {
@@ -935,7 +1683,8 @@
             "quote": "A reliable RV power setup means thinking about your entire system",
             "reviewer_name": "Dr. Denis Phares",
             "show_verified": true,
-            "product_name": "100Ah 12V LiFePO4 Deep Cycle Battery"
+            "product_name": "100Ah 12V LiFePO4 Deep Cycle Battery",
+            "product_url": ""
           }
         },
         "review_5": {
@@ -944,7 +1693,8 @@
             "quote": "A reliable RV power setup means thinking about your entire system",
             "reviewer_name": "Dr. Denis Phares",
             "show_verified": true,
-            "product_name": "100Ah 12V LiFePO4 Deep Cycle Battery"
+            "product_name": "100Ah 12V LiFePO4 Deep Cycle Battery",
+            "product_url": ""
           }
         }
       },
@@ -960,65 +1710,785 @@
         "review_3",
         "review_4",
         "review_5"
-      ]
+      ],
+      "settings": {
+        "heading": "400,000+ LiFePO4 Battery Packs In the Field",
+        "subheading": "Power Lights, fans, furnace, water pump, refrigerator, satellite Internet & everyday essentials reliably through the night",
+        "rating_value": "4.6",
+        "rating_label": "Stars",
+        "color_scheme": "scheme-2",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
     },
     "product-hotspots": {
       "type": "product-hotspots",
-      "settings": {
-        "image": "shopify://shop_images/image-7-mobile-I8681146086811453.png",
-        "section_width": "full-width",
-        "section_height": "auto",
-        "gap": 40,
-        "color_scheme": "scheme-2",
-        "hotspot_color": "#C9CAD4",
-        "bullseye_color": "#FFFFFF",
-        "product_title_gap": 8,
-        "padding-block-start": 64,
-        "padding-block-end": 0
-      },
       "blocks": {
+        "hotspot-1": {
+          "type": "_hotspot-product",
+          "settings": {
+            "product": "",
+            "x-position": 35,
+            "y-position": 23
+          },
+          "blocks": {}
+        },
+        "hotspot-2": {
+          "type": "_hotspot-product",
+          "settings": {
+            "product": "",
+            "x-position": 66,
+            "y-position": 23
+          },
+          "blocks": {}
+        },
+        "hotspot-3": {
+          "type": "_hotspot-product",
+          "settings": {
+            "product": "",
+            "x-position": 58,
+            "y-position": 55
+          },
+          "blocks": {}
+        },
         "heading": {
           "type": "text",
           "static": true,
           "settings": {
             "text": "<p>Ready for a more reliable power system?</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
             "font_size": "2rem",
             "line_height": "normal",
             "letter_spacing": "tight",
             "case": "none",
-            "alignment": "center",
-            "width": "100%",
-            "color": "var(--color-foreground-heading)"
-          }
-        },
-        "hotspot-1": {
-          "type": "_hotspot-product",
-          "settings": {
-            "x-position": 35,
-            "y-position": 23
-          }
-        },
-        "hotspot-2": {
-          "type": "_hotspot-product",
-          "settings": {
-            "x-position": 66,
-            "y-position": 23
-          }
-        },
-        "hotspot-3": {
-          "type": "_hotspot-product",
-          "settings": {
-            "x-position": 58,
-            "y-position": 55
-          }
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
-      "block_order": ["hotspot-1", "hotspot-2", "hotspot-3"]
+      "block_order": [
+        "hotspot-1",
+        "hotspot-2",
+        "hotspot-3"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/image-7-mobile-I8681146086811453.png",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "section_width": "full-width",
+        "section_height": "auto",
+        "gap": 40,
+        "hotspot_color": "#c9cad4",
+        "bullseye_color": "#ffffff",
+        "color_scheme": "scheme-2",
+        "product_title_gap": 8,
+        "product_title_preset": "",
+        "product_price_preset": "",
+        "padding-block-start": 64,
+        "padding-block-end": 0
+      }
     },
     "content-carousel": {
       "type": "carousel",
+      "blocks": {
+        "static-header": {
+          "type": "group",
+          "static": true,
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 16,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 16,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Power system education, built by engineers</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "2rem",
+                "line_height": "normal",
+                "letter_spacing": "tight",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "cta_button": {
+              "type": "button",
+              "settings": {
+                "label": "Read our blog",
+                "link": "",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading",
+            "cta_button"
+          ]
+        },
+        "static-carousel-content": {
+          "type": "_carousel-content",
+          "static": true,
+          "settings": {
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "height": "fit",
+            "position": "top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "card_1": {
+              "type": "_card",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 16,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "aspect_ratio": "adapt",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "image_1": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/rectangle-3320-mobile-I8681153786811475.png",
+                    "link": "",
+                    "image_ratio": "square",
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 4,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "title_1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>The Best Deep Cycle RV Batteries for Your Camper</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "button_1": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Read our blog",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "style_class": "link",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_1",
+                "title_1",
+                "button_1"
+              ]
+            },
+            "card_2": {
+              "type": "_card",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 16,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "aspect_ratio": "adapt",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "image_2": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/rectangle-3319-mobile-I8681153786811480.png",
+                    "link": "",
+                    "image_ratio": "square",
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 4,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "title_2": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>What Battery Cable Size Should I Use?</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "button_2": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Read more",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "style_class": "link",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_2",
+                "title_2",
+                "button_2"
+              ]
+            },
+            "card_3": {
+              "type": "_card",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 16,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "aspect_ratio": "adapt",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "image_3": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/rectangle-3319-desktop-I66312016631155.png",
+                    "link": "",
+                    "image_ratio": "square",
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 4,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "title_3": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Can You Put a LiFePO4 Lithium Battery Inside Your Car?</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "button_3": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Read more",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "style_class": "link",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_3",
+                "title_3",
+                "button_3"
+              ]
+            },
+            "card_4": {
+              "type": "_card",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 16,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "aspect_ratio": "adapt",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "image_4": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/rectangle-3319-desktop-I66312016631160.png",
+                    "link": "",
+                    "image_ratio": "square",
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 4,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "title_4": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>The Basics of Lithium Ion Batteries</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "button_4": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Read more",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "style_class": "link",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_4",
+                "title_4",
+                "button_4"
+              ]
+            },
+            "card_5": {
+              "type": "_card",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 16,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "aspect_ratio": "adapt",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "image_5": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/rectangle-3319-desktop-I66312016631165.png",
+                    "link": "",
+                    "image_ratio": "square",
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 4,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "title_5": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>What Is An Electric Fuse and Why Do They Matter?</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "button_5": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Read more",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "style_class": "link",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_5",
+                "title_5",
+                "button_5"
+              ]
+            },
+            "card_6": {
+              "type": "_card",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 16,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "aspect_ratio": "adapt",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "image_6": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/rectangle-3319-desktop-I66312016631170.png",
+                    "link": "",
+                    "image_ratio": "square",
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 4,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "title_6": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>What It Really Is and Why It Can Be Misleading</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "button_6": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Read more",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "style_class": "link",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_6",
+                "title_6",
+                "button_6"
+              ]
+            }
+          },
+          "block_order": [
+            "card_1",
+            "card_2",
+            "card_3",
+            "card_4",
+            "card_5",
+            "card_6"
+          ]
+        }
+      },
       "settings": {
         "columns": 4,
         "mobile_columns": "1",
@@ -1029,290 +2499,100 @@
         "icons_shape": "none",
         "padding-block-start": 64,
         "padding-block-end": 64
-      },
+      }
+    },
+    "right-image-text": {
+      "type": "media-with-content",
       "blocks": {
-        "static-header": {
-          "type": "group",
+        "media": {
+          "type": "_media-without-appearance",
           "static": true,
           "settings": {
-            "content_direction": "column",
-            "horizontal_alignment_flex_direction_column": "center",
-            "gap": 16,
-            "width": "fill",
-            "height": "fit",
-            "padding-block-end": 16
+            "media_type": "image",
+            "image": "shopify://shop_images/Powered_by_Dragonfly_Energy.png",
+            "link": "",
+            "video_loop": true,
+            "video_autoplay": false,
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12
           },
           "blocks": {
             "heading": {
               "type": "text",
               "settings": {
-                "text": "<p>Power system education, built by engineers</p>",
+                "text": "<p>Unstoppable Power Solutions. Backed by An American Brand.</p>",
                 "width": "100%",
-                "alignment": "center",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "custom",
                 "font": "var(--font-heading--family)",
-                "font_size": "2rem",
-                "line_height": "normal",
+                "font_size": "1.5rem",
+                "line_height": "body-normal",
                 "letter_spacing": "tight",
                 "case": "none",
                 "wrap": "pretty",
-                "color": "var(--color-foreground-heading)"
-              }
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             },
-            "cta_button": {
-              "type": "button",
+            "description": {
+              "type": "text",
               "settings": {
-                "label": "Read our blog",
-                "style_class": "link"
-              }
+                "text": "<p>Assembled and tested in the U.S. with a focus on quality, safety and long-term reliability</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "heading-loose",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
-          "block_order": ["heading", "cta_button"]
-        },
-        "static-carousel-content": {
-          "type": "_carousel-content",
-          "static": true,
-          "settings": {
-            "inherit_color_scheme": true,
-            "position": "top",
-            "height": "fit"
-          },
-          "blocks": {
-            "card_1": {
-              "type": "_card",
-              "settings": {
-                "content_direction": "column",
-                "gap": 16
-              },
-              "blocks": {
-                "image_1": {
-                  "type": "image",
-                  "settings": {
-                    "image": "shopify://shop_images/rectangle-3320-mobile-I8681153786811475.png",
-                    "image_ratio": "square",
-                    "width": "fill",
-                    "border_radius": 4
-                  }
-                },
-                "title_1": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>The Best Deep Cycle RV Batteries for Your Camper</p>",
-                    "type_preset": "custom",
-                    "font": "var(--font-heading--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "color": "var(--color-foreground-heading)"
-                  }
-                },
-                "button_1": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Read our blog",
-                    "style_class": "link"
-                  }
-                }
-              },
-              "block_order": ["image_1", "title_1", "button_1"]
-            },
-            "card_2": {
-              "type": "_card",
-              "settings": {
-                "content_direction": "column",
-                "gap": 16
-              },
-              "blocks": {
-                "image_2": {
-                  "type": "image",
-                  "settings": {
-                    "image": "shopify://shop_images/rectangle-3319-mobile-I8681153786811480.png",
-                    "image_ratio": "square",
-                    "width": "fill",
-                    "border_radius": 4
-                  }
-                },
-                "title_2": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>What Battery Cable Size Should I Use?</p>",
-                    "type_preset": "custom",
-                    "font": "var(--font-heading--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "color": "var(--color-foreground-heading)"
-                  }
-                },
-                "button_2": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Read more",
-                    "style_class": "link"
-                  }
-                }
-              },
-              "block_order": ["image_2", "title_2", "button_2"]
-            },
-            "card_3": {
-              "type": "_card",
-              "settings": {
-                "content_direction": "column",
-                "gap": 16
-              },
-              "blocks": {
-                "image_3": {
-                  "type": "image",
-                  "settings": {
-                    "image": "shopify://shop_images/rectangle-3319-desktop-I66312016631155.png",
-                    "image_ratio": "square",
-                    "width": "fill",
-                    "border_radius": 4
-                  }
-                },
-                "title_3": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Can You Put a LiFePO4 Lithium Battery Inside Your Car?</p>",
-                    "type_preset": "custom",
-                    "font": "var(--font-heading--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "color": "var(--color-foreground-heading)"
-                  }
-                },
-                "button_3": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Read more",
-                    "style_class": "link"
-                  }
-                }
-              },
-              "block_order": ["image_3", "title_3", "button_3"]
-            },
-            "card_4": {
-              "type": "_card",
-              "settings": {
-                "content_direction": "column",
-                "gap": 16
-              },
-              "blocks": {
-                "image_4": {
-                  "type": "image",
-                  "settings": {
-                    "image": "shopify://shop_images/rectangle-3319-desktop-I66312016631160.png",
-                    "image_ratio": "square",
-                    "width": "fill",
-                    "border_radius": 4
-                  }
-                },
-                "title_4": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>The Basics of Lithium Ion Batteries</p>",
-                    "type_preset": "custom",
-                    "font": "var(--font-heading--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "color": "var(--color-foreground-heading)"
-                  }
-                },
-                "button_4": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Read more",
-                    "style_class": "link"
-                  }
-                }
-              },
-              "block_order": ["image_4", "title_4", "button_4"]
-            },
-            "card_5": {
-              "type": "_card",
-              "settings": {
-                "content_direction": "column",
-                "gap": 16
-              },
-              "blocks": {
-                "image_5": {
-                  "type": "image",
-                  "settings": {
-                    "image": "shopify://shop_images/rectangle-3319-desktop-I66312016631165.png",
-                    "image_ratio": "square",
-                    "width": "fill",
-                    "border_radius": 4
-                  }
-                },
-                "title_5": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>What Is An Electric Fuse and Why Do They Matter?</p>",
-                    "type_preset": "custom",
-                    "font": "var(--font-heading--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "color": "var(--color-foreground-heading)"
-                  }
-                },
-                "button_5": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Read more",
-                    "style_class": "link"
-                  }
-                }
-              },
-              "block_order": ["image_5", "title_5", "button_5"]
-            },
-            "card_6": {
-              "type": "_card",
-              "settings": {
-                "content_direction": "column",
-                "gap": 16
-              },
-              "blocks": {
-                "image_6": {
-                  "type": "image",
-                  "settings": {
-                    "image": "shopify://shop_images/rectangle-3319-desktop-I66312016631170.png",
-                    "image_ratio": "square",
-                    "width": "fill",
-                    "border_radius": 4
-                  }
-                },
-                "title_6": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>What It Really Is and Why It Can Be Misleading</p>",
-                    "type_preset": "custom",
-                    "font": "var(--font-heading--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "color": "var(--color-foreground-heading)"
-                  }
-                },
-                "button_6": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Read more",
-                    "style_class": "link"
-                  }
-                }
-              },
-              "block_order": ["image_6", "title_6", "button_6"]
-            }
-          },
-          "block_order": ["card_1", "card_2", "card_3", "card_4", "card_5", "card_6"]
+          "block_order": [
+            "heading",
+            "description"
+          ]
         }
-      }
-    },
-    "proud-american-badge": {
-      "type": "custom-liquid",
+      },
       "settings": {
-        "custom_liquid": "<style>.proud-american-badge{display:flex;justify-content:center;align-items:center;}@media screen and (min-width:750px){.proud-american-badge{justify-content:flex-end;}}</style><div class=\"proud-american-badge\"><picture><source media=\"(max-width:749px)\" srcset=\"{{ 'frame-48098271-2.svg' | asset_url }}\" type=\"image/svg+xml\"><img src=\"{{ 'frame-48098271.svg' | asset_url }}\" alt=\"Proud American Company\" width=\"264\" height=\"40\" loading=\"eager\" style=\"display:block;\"></picture></div>",
-        "color_scheme": "scheme-1",
+        "media_position": "right",
+        "media_width": "medium",
+        "media_height": "auto",
         "section_width": "page-width",
-        "padding-block-start": 16,
-        "padding-block-end": 16
+        "extend_media": false,
+        "color_scheme": "scheme-2",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     }
   },
@@ -1320,11 +2600,11 @@
     "hero-carousel",
     "proud-american-badge",
     "image-title-cards",
-    "left-image-text",
-    "right-image-text",
     "tabbed-product-carousel",
     "testimonials",
+    "content-carousel",
     "product-hotspots",
-    "content-carousel"
+    "left-image-text",
+    "right-image-text"
   ]
 }
